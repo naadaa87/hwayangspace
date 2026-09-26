@@ -1,5 +1,5 @@
 /* =========================================================
-   한아름 (화양동 10-1) 예약·문의 API
+   화양 스페이스 (Hwayang Space · 화양동 10-1) 예약·문의 API
    Cloudflare Pages Functions + D1
 
    필요한 설정 (Cloudflare 대시보드 → Pages 프로젝트 → Settings)
@@ -56,12 +56,12 @@ function makeCode() {
   const buf = new Uint8Array(4);
   crypto.getRandomValues(buf);
   for (const b of buf) r += chars[b % chars.length];
-  return `HR-${d}-${r}`;
+  return `HS-${d}-${r}`;
 }
 
 /* ---------- 관리자 토큰 (HMAC) ---------- */
 async function hmacKey(secret) {
-  const raw = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(secret + "|hanareum-admin"));
+  const raw = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(secret + "|hwayang-admin"));
   return crypto.subtle.importKey("raw", raw, { name: "HMAC", hash: "SHA-256" }, false, ["sign", "verify"]);
 }
 const toHex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -100,7 +100,7 @@ async function notify(env, subject, text) {
       method: "POST",
       headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, "content-type": "application/json" },
       body: JSON.stringify({
-        from: env.NOTIFY_FROM || "한아름 <onboarding@resend.dev>",
+        from: env.NOTIFY_FROM || "화양 스페이스 <onboarding@resend.dev>",
         to: [env.NOTIFY_EMAIL],
         subject,
         text,
@@ -211,7 +211,7 @@ export async function onRequest(context) {
         }
       }
 
-      context.waitUntil(notify(env, `[한아름] 새 예약 요청 ${code}`,
+      context.waitUntil(notify(env, `[화양 스페이스] 새 예약 요청 ${code}`,
         `공간: ${space.name}${room ? " / " + room : ""}\n날짜: ${date} ${start}:00~${end}:00\n이름: ${name}\n연락처: ${phone}\n인원: ${headcount ?? "-"}\n용도: ${purpose || "-"}`));
 
       return json({ ok: true, code, space: space.name, room: space.rooms ? room : null, date, start_hour: start, end_hour: end,
@@ -243,7 +243,7 @@ export async function onRequest(context) {
       if (row.status === "cancelled") return fail("이미 취소된 예약입니다.");
       if (row.date < todayKST()) return fail("지난 예약은 취소할 수 없습니다.");
       await db.prepare("UPDATE reservations SET status = 'cancelled', updated_at = ?2 WHERE id = ?1").bind(row.id, dbTime()).run();
-      context.waitUntil(notify(env, `[한아름] 예약 취소 ${code}`, `${row.date} ${row.start_hour}:00~${row.end_hour}:00 / ${row.name} / ${row.phone}`));
+      context.waitUntil(notify(env, `[화양 스페이스] 예약 취소 ${code}`, `${row.date} ${row.start_hour}:00~${row.end_hour}:00 / ${row.name} / ${row.phone}`));
       return json({ ok: true });
     }
 
@@ -261,7 +261,7 @@ export async function onRequest(context) {
       if (!body.agree) return fail("개인정보 수집·이용에 동의해 주세요.");
       await db.prepare(`INSERT INTO inquiries (name, phone, email, space_id, type, message) VALUES (?1,?2,?3,?4,?5,?6)`)
         .bind(name, phone, email || null, spaceId, type, message).run();
-      context.waitUntil(notify(env, `[한아름] 새 문의 (${type})`, `이름: ${name}\n연락처: ${phone}\n이메일: ${email || "-"}\n공간: ${spaceId || "-"}\n\n${message}`));
+      context.waitUntil(notify(env, `[화양 스페이스] 새 문의 (${type})`, `이름: ${name}\n연락처: ${phone}\n이메일: ${email || "-"}\n공간: ${spaceId || "-"}\n\n${message}`));
       return json({ ok: true });
     }
 
@@ -342,7 +342,7 @@ export async function onRequest(context) {
         if (room && space.rooms && !space.rooms.includes(room)) return fail("룸 이름이 맞지 않습니다.");
         const overlap = await findOverlap(db, space, room, date, start, end);
         if (overlap && overlap.kind === "booking") return fail(`이 시간에 예약(${overlap.code})이 있습니다. 먼저 처리해 주세요.`, 409);
-        const code = makeCode().replace("HR-", "BL-");
+        const code = makeCode().replace("HS-", "BL-");
         await db.prepare(`INSERT INTO reservations (code, kind, space_id, room, date, start_hour, end_hour, status, memo)
                           VALUES (?1,'block',?2,?3,?4,?5,?6,'confirmed',?7)`)
           .bind(code, spaceId, room, date, start, end, clip(body.memo, 200) || "운영자 차단").run();
@@ -397,12 +397,15 @@ export async function onRequest(context) {
         let spec = row.spec, who = row.who;
         if (body.spec !== undefined) { try { spec = JSON.stringify(body.spec); } catch { return fail("이용 방식 형식 오류"); } }
         if (body.who !== undefined) { who = JSON.stringify((Array.isArray(body.who) ? body.who : String(body.who).split(",")).map((w) => clip(w, 30)).filter(Boolean)); }
+        const category = clip(body.category ?? row.category ?? "party", 10);
+        if (!["party", "event", "study", "lounge"].includes(category)) return fail("분류값이 올바르지 않습니다.");
         await db.prepare(`UPDATE spaces SET name=?2, short=?3, status=?4, open_label=?5, open_date=?6, bookable=?7, rooms=?8,
-                          min_hours=?9, max_hours=?10, price_note=?11, description=?12, spec=?13, who=?14, photo=?15 WHERE id=?1`)
+                          min_hours=?9, max_hours=?10, price_note=?11, description=?12, spec=?13, who=?14, photo=?15,
+                          category=?16, capacity=?17 WHERE id=?1`)
           .bind(id, clip(body.name ?? row.name, 40), clip(body.short ?? row.short, 20), status, clip(body.open_label ?? row.open_label, 40),
             openDate || null, body.bookable === undefined ? row.bookable : (body.bookable ? 1 : 0), rooms, minH, maxH,
             clip(body.price_note ?? row.price_note ?? "", 80) || null, clip(body.description ?? row.description, 600), spec, who,
-            clip(body.photo ?? row.photo ?? "", 300) || null)
+            clip(body.photo ?? row.photo ?? "", 300) || null, category, clip(body.capacity ?? row.capacity ?? "", 40) || null)
           .run();
         return json({ ok: true, space: parseSpace(await db.prepare("SELECT * FROM spaces WHERE id = ?1").bind(id).first()) });
       }

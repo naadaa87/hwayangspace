@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>한아름 관리자</title>
+<title>화양 스페이스 관리자</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2316213E'/%3E%3Crect x='14' y='14' width='36' height='8' rx='2' fill='%23fff'/%3E%3Crect x='14' y='26' width='36' height='8' rx='2' fill='%23fff'/%3E%3Crect x='14' y='38' width='16' height='8' rx='2' fill='%23C9A227'/%3E%3Crect x='34' y='38' width='16' height='8' rx='2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FF6A3D'/%3E%3Ccircle cx='32' cy='30' r='11' fill='%23fff'/%3E%3Crect x='14' y='44' width='36' height='6' rx='3' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{--paper:#fff;--stone:#F4F4F4;--stone-2:#E8E9EC;--ink:#16213E;--ink-2:#4B5470;--ink-3:#7C839A;--line:#D9DBE1;--gold:#C9A227;--gold-deep:#8C6E10;--gold-soft:#F8F1D6;--ok:#1F7A4D;--ok-soft:#E3F3EA;--err:#B3261E;--err-soft:#FBE9E7;--radius:6px;
+:root{--paper:#fff;--stone:#F7F8FA;--stone-2:#EEF0F2;--ink:#191F28;--ink-2:#4E5968;--ink-3:#8B95A1;--line:#E5E8EB;--gold:#FF6A3D;--gold-deep:#E5551F;--gold-soft:#FFF1EB;--ok:#0E9F6E;--ok-soft:#E6F7F1;--err:#E5484D;--err-soft:#FDECEC;--radius:12px;
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);background:var(--stone);font-size:15px;line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased}
@@ -27,12 +27,12 @@ a{color:inherit}
 @media (max-width:480px){.top .mark{font-size:17px}.top .mark small{display:none}}
 .top .right{display:flex;gap:8px;align-items:center}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 16px;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 16px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;white-space:nowrap}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.ghost{background:#fff;color:var(--ink)}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
 .btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
 .btn.danger{background:#fff;color:var(--err);border-color:var(--err)}
-.btn.sm{height:34px;padding:0 12px;font-size:13px}
+.btn.sm{height:34px;padding:0 12px;font-size:13px;border-radius:8px}
 
 .login{max-width:400px;margin:80px auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px}
 .login h1{font-size:20px;font-weight:700;margin-bottom:6px}
@@ -55,6 +55,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
 .stat .v{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .stat .k{font-size:13px;color:var(--ink-3);margin-top:6px}
 .stat.warn{border-top:3px solid var(--gold)}
+.pill.pending{background:#FFF4E0;color:#B7791F}
 
 .tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:18px;overflow-x:auto}
 .tab{background:none;border:0;padding:12px 14px;font-size:15px;font-weight:600;color:var(--ink-3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
@@ -95,7 +96,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
 
 <div class="top">
   <div class="wrap">
-    <div class="mark">한아름 관리자<small>화양동 10-1</small></div>
+    <div class="mark">화양 스페이스 관리자<small>화양동 10-1</small></div>
     <div class="right"><a class="btn ghost sm" href="/" target="_blank" rel="noopener">홈페이지 보기</a><button class="btn sm hidden" id="logoutBtn" type="button">로그아웃</button></div>
   </div>
 </div>
@@ -110,7 +111,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
 
 <div class="wrap hidden" id="app">
   <div class="stats">
-    <div class="stat warn"><div class="v" id="stPending">-</div><div class="k">확인 대기 예약</div></div>
+    <div class="stat warn"><div class="v" id="stPending">-</div><div class="k">확인 중인 예약</div></div>
     <div class="stat"><div class="v" id="stToday">-</div><div class="k">오늘 예약 (취소 제외)</div></div>
     <div class="stat"><div class="v" id="stUpcoming">-</div><div class="k">앞으로 확정된 예약</div></div>
     <div class="stat warn"><div class="v" id="stInq">-</div><div class="k">새 문의</div></div>
@@ -126,7 +127,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
   <!-- 예약 -->
   <div id="tab-res">
     <div class="toolbar">
-      <div class="field"><label>상태</label><select id="fStatus"><option value="">전체</option><option value="pending" selected>확인 대기</option><option value="confirmed">확정</option><option value="cancelled">취소</option></select></div>
+      <div class="field"><label>상태</label><select id="fStatus"><option value="">전체</option><option value="pending" selected>확인 중</option><option value="confirmed">확정</option><option value="cancelled">취소</option></select></div>
       <div class="field"><label>공간</label><select id="fSpace"><option value="">전체</option></select></div>
       <div class="field"><label>시작일</label><input type="date" id="fFrom"></div>
       <div class="field"><label>종료일</label><input type="date" id="fTo"></div>
@@ -178,7 +179,8 @@ const hh = (h) => `${String(h).padStart(2,"0")}:00`;
 const showMsg = (id, t, type) => { $(id).innerHTML = t ? `<div class="msg ${type}">${esc(t)}</div>` : ""; };
 let TOKEN = sessionStorage.getItem("hr_admin_token") || "";
 let SPACES = [];
-const RS = { pending:"확인 대기", confirmed:"확정", cancelled:"취소" };
+const RS = { pending:"확인 중", confirmed:"확정", cancelled:"취소" };
+const CATS = { party:"파티·모임", event:"행사·대관", study:"연습·세미나", lounge:"카페·라운지" };
 const IS = { new:"새 문의", replied:"답변함", closed:"종료" };
 
 async function api(path, opts = {}) {
@@ -241,8 +243,8 @@ async function loadRes(){
           <div class="meta">요청 ${esc(r.created_at)}${r.updated_at ? " · 변경 " + esc(r.updated_at) : ""}</div>
         </div>
         <div class="ctrl">
-          <select data-f="status"><option value="pending" ${r.status==="pending"?"selected":""}>확인 대기</option><option value="confirmed" ${r.status==="confirmed"?"selected":""}>확정</option><option value="cancelled" ${r.status==="cancelled"?"selected":""}>취소</option></select>
-          <input type="text" data-f="memo" placeholder="메모 (도어락 전달 여부, 결제 등)" value="${esc(r.memo || "")}">
+          <select data-f="status"><option value="pending" ${r.status==="pending"?"selected":""}>확인 중</option><option value="confirmed" ${r.status==="confirmed"?"selected":""}>확정</option><option value="cancelled" ${r.status==="cancelled"?"selected":""}>취소</option></select>
+          <input type="text" data-f="memo" placeholder="메모 (도어락 전달, 결제 등)" value="${esc(r.memo || "")}">
           <div class="actions"><button class="btn sm" type="button" data-save>저장</button><a class="btn ghost sm" href="sms:${esc(r.phone)}">문자</a></div>
           <div data-msg></div>
         </div>
@@ -325,13 +327,15 @@ function renderSpaces(){
       <div class="grid3">
         <div class="field"><label>이름</label><input type="text" data-f="name" value="${esc(s.name)}"></div>
         <div class="field"><label>건물 그림용 짧은 이름</label><input type="text" data-f="short" value="${esc(s.short)}"></div>
-        <div class="field"><label>상태</label><select data-f="status"><option value="live" ${s.status==="live"?"selected":""}>운영 중</option><option value="soon" ${s.status==="soon"?"selected":""}>2026년 12월 오픈</option><option value="later" ${s.status==="later"?"selected":""}>2027년 오픈</option></select></div>
+        <div class="field"><label>상태</label><select data-f="status"><option value="live" ${s.status==="live"?"selected":""}>운영 중</option><option value="soon" ${s.status==="soon"?"selected":""}>12월 오픈 (사전 예약)</option><option value="later" ${s.status==="later"?"selected":""}>2027년 오픈</option></select></div>
         <div class="field"><label>상태 문구 (카드 표시)</label><input type="text" data-f="open_label" value="${esc(s.open_label)}"></div>
         <div class="field"><label>예약 시작일 (비우면 오늘부터)</label><input type="date" data-f="open_date" value="${esc(s.open_date || "")}"></div>
         <div class="field"><label>예약 방식</label><select data-f="bookable"><option value="1" ${s.bookable?"selected":""}>온라인 예약 받음</option><option value="0" ${!s.bookable?"selected":""}>예약 없이 이용 (카페·가챠)</option></select></div>
         <div class="field"><label>룸 목록 (쉼표로 구분, 없으면 비움)</label><input type="text" data-f="rooms" value="${esc((s.rooms||[]).join(", "))}"></div>
         <div class="field"><label>최소 이용 시간</label><input type="number" data-f="min_hours" min="1" max="24" value="${s.min_hours}"></div>
         <div class="field"><label>최대 이용 시간</label><input type="number" data-f="max_hours" min="1" max="24" value="${s.max_hours}"></div>
+        <div class="field"><label>분류 (홈페이지 탭)</label><select data-f="category">${Object.keys(CATS).map(k => `<option value="${k}" ${s.category===k?"selected":""}>${CATS[k]}</option>`).join("")}</select></div>
+        <div class="field"><label>인원 안내 (선택)</label><input type="text" data-f="capacity" placeholder="예: 최대 8명" value="${esc(s.capacity || "")}"></div>
         <div class="field"><label>요금 안내 (선택)</label><input type="text" data-f="price_note" placeholder="예: 시간당 2만원부터" value="${esc(s.price_note || "")}"></div>
         <div class="field"><label>사진 주소 (선택)</label><input type="text" data-f="photo" placeholder="images/xxx.jpg 또는 https://…" value="${esc(s.photo || "")}"></div>
         <div class="field"><label>이런 분께 (쉼표로 구분)</label><input type="text" data-f="who" value="${esc((s.who||[]).join(", "))}"></div>
@@ -349,7 +353,7 @@ async function saveSpace(card){
   const body = {
     name:g("name"), short:g("short"), status:g("status"), open_label:g("open_label"), open_date:g("open_date"),
     bookable: g("bookable") === "1", rooms: g("rooms"), min_hours:Number(g("min_hours")), max_hours:Number(g("max_hours")),
-    price_note:g("price_note"), photo:g("photo"), who:g("who"), description:g("description"),
+    price_note:g("price_note"), photo:g("photo"), who:g("who"), description:g("description"), category:g("category"), capacity:g("capacity"),
     spec: g("spec").split("\n").map(l => l.trim()).filter(Boolean).map(l => { const i = l.indexOf("|"); return i > 0 ? [l.slice(0,i).trim(), l.slice(i+1).trim()] : [l, ""]; })
   };
   const m = card.querySelector("[data-msg]");

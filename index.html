@@ -3,537 +3,579 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>한아름 | 건대 화양동 10-1, 한 건물 안 아홉 개의 공간</title>
-<meta name="description" content="서울 광진구 화양동 10-1 한아름건물. 무인 디저트 카페, 게임파티룸, 팬덤 이벤트홀, 가챠 뽑기샵, 파티룸, OTT 라운지, 연습실, 세미나 모임공간까지 1층부터 4층까지 예약제로 운영합니다.">
-<meta name="theme-color" content="#16213E">
+<title>화양 스페이스 | 건대 앞 한 건물, 파티룸·이벤트홀·연습실·세미나룸 예약</title>
+<meta name="description" content="화양 스페이스(Hwayang Space). 서울 광진구 화양동 10-1, 1층부터 4층까지 아홉 개 공간. 파티룸, 이벤트홀, 연습실, 세미나룸을 온라인으로 예약하고 도어락으로 바로 들어가요.">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
-<meta property="og:title" content="한아름 | 건대 화양동 10-1, 한 건물 안 아홉 개의 공간">
-<meta property="og:description" content="카페, 파티룸, 이벤트홀, 가챠샵, OTT 라운지, 연습실, 세미나룸. 층마다 쓰임이 다른 공간을 온라인으로 예약합니다.">
+<meta property="og:title" content="화양 스페이스 | 건대 앞 한 건물, 아홉 개 공간">
+<meta property="og:description" content="파티룸, 이벤트홀, 연습실, 세미나룸까지. 화양동 10-1 한 건물에서 예약하고 바로 이용해요.">
 <meta property="og:locale" content="ko_KR">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2316213E'/%3E%3Crect x='14' y='14' width='36' height='8' rx='2' fill='%23fff'/%3E%3Crect x='14' y='26' width='36' height='8' rx='2' fill='%23fff'/%3E%3Crect x='14' y='38' width='16' height='8' rx='2' fill='%23C9A227'/%3E%3Crect x='34' y='38' width='16' height='8' rx='2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FF6A3D'/%3E%3Ccircle cx='32' cy='30' r='11' fill='%23fff'/%3E%3Crect x='14' y='44' width='36' height='6' rx='3' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
 <style>
-/* ---------------------------------------------------------
-   색상·서체 기본값 — 포인트(골드)와 기본색(네이비)만 바꾸면 전체 톤이 바뀝니다.
---------------------------------------------------------- */
+/* =========================================================
+   화양 스페이스 디자인 토큰
+   포인트 컬러(--point)만 바꾸면 버튼, 배지, 강조가 함께 바뀝니다.
+========================================================= */
 :root{
-  --paper:#FFFFFF; --stone:#F4F4F4; --stone-2:#E8E9EC;
-  --ink:#16213E; --ink-2:#4B5470; --ink-3:#7C839A; --line:#D9DBE1;
-  --gold:#C9A227; --gold-deep:#8C6E10; --gold-soft:#F8F1D6;
-  --ok:#1F7A4D; --ok-soft:#E3F3EA; --err:#B3261E; --err-soft:#FBE9E7;
-  --radius:6px; --maxw:1120px; --header-h:64px;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#FFFFFF; --surface:#F7F8FA; --surface-2:#F2F4F6; --line:#E5E8EB; --line-2:#EEF0F2;
+  --text:#191F28; --text-2:#4E5968; --text-3:#8B95A1; --text-4:#B0B8C1;
+  --point:#FF6A3D; --point-deep:#E5551F; --point-soft:#FFF1EB; --point-line:#FFD2C2;
+  --dark:#191F28; --ok:#0E9F6E; --ok-soft:#E6F7F1; --err:#E5484D; --err-soft:#FDECEC;
+  --r-sm:10px; --r:16px; --r-lg:24px;
+  --maxw:1120px; --header-h:60px;
+  --shadow:0 1px 2px rgba(25,31,40,.04), 0 8px 24px rgba(25,31,40,.06);
+  --shadow-lg:0 12px 40px rgba(25,31,40,.12);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 16px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
   font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
-  color:var(--ink);background:var(--paper);font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;
+  color:var(--text);background:var(--bg);font-size:16px;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
 img{max-width:100%;display:block}
-a{color:inherit}
+a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-@media (max-width:640px){.wrap{padding:0 18px}}
-section{scroll-margin-top:calc(var(--header-h) + 8px)}
-.sec{padding:96px 0}
-.sec.stone{background:var(--stone)}
-@media (max-width:760px){.sec{padding:64px 0}}
-.sec-head{max-width:640px;margin-bottom:40px}
-.sec-head h2{font-size:clamp(26px,3.6vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.25}
-.sec-head p{margin-top:14px;color:var(--ink-2);font-size:17px}
-@media (max-width:640px){.sec-head p{font-size:16px}}
+button{cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--point);outline-offset:2px}
 .hidden{display:none !important}
+.hero .wrap > *,.book > *,.check > *,.visit > *,.footer .wrap > *,.grid > *{min-width:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+@media (max-width:640px){.wrap{padding:0 20px}}
+section{scroll-margin-top:calc(var(--header-h) + 4px)}
+.sec{padding:88px 0}
+.sec.gray{background:var(--surface)}
+@media (max-width:760px){.sec{padding:56px 0}}
+.h2{font-size:clamp(24px,3.2vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.25}
+.sub{margin-top:10px;color:var(--text-2);font-size:16px}
+@media (max-width:640px){.sub{font-size:15px}}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px}
+.sec-head .more{font-size:14px;font-weight:600;color:var(--text-2);white-space:nowrap;padding-bottom:4px}
+@media (max-width:640px){.sec-head{flex-direction:column;align-items:flex-start;gap:6px}}
 
-/* 버튼 */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:var(--radius);font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:#fff;transition:background .15s,color .15s}
-.btn:hover{background:#0f1730}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--stone)}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.btn.gold:hover{background:#b8931f}
-.btn.sm{height:38px;padding:0 16px;font-size:14px}
-.btn.block{width:100%}
+/* ---------- 버튼 · 배지 ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:48px;padding:0 20px;border-radius:12px;font-size:15px;font-weight:700;white-space:nowrap;transition:background .15s,transform .1s,box-shadow .15s;border:1px solid transparent}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn.primary{background:var(--point);color:#fff}
+.btn.primary:hover{background:var(--point-deep)}
+.btn.dark{background:var(--dark);color:#fff}
+.btn.dark:hover{background:#2B3340}
+.btn.light{background:var(--surface-2);color:var(--text)}
+.btn.light:hover{background:#E9ECEF}
+.btn.line{background:#fff;color:var(--text);border-color:var(--line)}
+.btn.line:hover{background:var(--surface)}
+.btn.soft{background:var(--point-soft);color:var(--point-deep)}
+.btn.sm{height:38px;padding:0 14px;font-size:14px;border-radius:10px}
+.btn.lg{height:56px;font-size:16px;border-radius:14px;padding:0 26px}
+.btn.full{width:100%}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:7px;font-size:12px;font-weight:700;white-space:nowrap}
+.badge.live{background:var(--point);color:#fff}
+.badge.soon{background:var(--dark);color:#fff}
+.badge.later{background:var(--surface-2);color:var(--text-2)}
+.badge.pending{background:#FFF4E0;color:#B7791F}.badge.confirmed{background:var(--ok-soft);color:var(--ok)}.badge.cancelled{background:var(--surface-2);color:var(--text-3)}
+.tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--surface-2);color:var(--text-2);font-size:12.5px;font-weight:500}
 
-/* 상단 내비게이션 */
-.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--header-h);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
-.brand .mark{font-size:22px;font-weight:800;letter-spacing:-.03em}
-.brand .place{font-size:13px;color:var(--ink-3);font-weight:500}
-.nav{display:flex;align-items:center;gap:26px}
-.nav a{font-size:15px;font-weight:500;text-decoration:none;color:var(--ink-2)}
-.nav a:hover{color:var(--ink)}
-.nav .btn{margin-left:6px}
-.menu-btn{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;cursor:pointer;align-items:center;justify-content:center}
-.menu-btn span{display:block;width:18px;height:2px;background:var(--ink);position:relative}
-.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink)}
-.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+/* ---------- 상단 공지 · 헤더 ---------- */
+.notice{background:var(--dark);color:#fff;font-size:13.5px;height:38px;display:flex;align-items:center}
+.notice .wrap{display:flex;align-items:center;justify-content:center;gap:10px}
+.notice b{color:var(--point);font-weight:700}
+.notice a{font-weight:600;text-decoration:underline;text-underline-offset:3px;opacity:.9}
+@media (max-width:640px){.notice{font-size:12.5px}.notice .desk{display:none}}
+.notice .wrap{white-space:nowrap;overflow:hidden}
+.header{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;height:var(--header-h);background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line-2)}
+.header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:19px;letter-spacing:-.03em}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--point);display:inline-block}
+.logo small{font-size:11.5px;font-weight:600;color:var(--text-3);letter-spacing:.02em;margin-left:2px}
+.gnb{display:flex;align-items:center;gap:4px}
+.gnb a{height:36px;padding:0 12px;border-radius:9px;display:inline-flex;align-items:center;font-size:14.5px;font-weight:600;color:var(--text-2)}
+.gnb a:hover{background:var(--surface-2);color:var(--text)}
+.header .right{display:flex;align-items:center;gap:8px}
+.menu-btn{display:none;width:40px;height:40px;border-radius:10px;align-items:center;justify-content:center}
+.menu-btn:hover{background:var(--surface-2)}
+.menu-btn svg{width:22px;height:22px}
 @media (max-width:900px){
+  .gnb{display:none;position:absolute;left:0;right:0;top:var(--header-h);background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:8px 12px 14px;box-shadow:var(--shadow)}
+  .gnb.open{display:flex}
+  .gnb a{height:48px;font-size:16px}
   .menu-btn{display:inline-flex}
-  .nav{display:none;position:absolute;left:0;right:0;top:var(--header-h);flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:8px 18px 18px}
-  .nav.open{display:flex}
-  .nav a{padding:14px 4px;border-bottom:1px solid var(--stone-2);font-size:16px}
-  .nav a.btn{margin:14px 0 0;border-bottom:0;padding:0 22px}
+  .header .right .btn{height:38px;padding:0 14px;font-size:14px}
+  .logo small{display:none}
 }
 
-/* 히어로 + 건물 단면 */
-.hero{padding:72px 0 80px}
-@media (max-width:760px){.hero{padding:44px 0 56px}}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:44px}}
-.hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.16}
-.hero .lead{margin-top:22px;font-size:18px;color:var(--ink-2);max-width:520px}
-@media (max-width:640px){.hero .lead{font-size:16px}}
-.hero .actions{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px}
-.hero .facts{margin-top:28px;font-size:14px;color:var(--ink-3)}
-.bldg{--fl-h:82px;max-width:520px;width:100%;justify-self:end}
-@media (max-width:900px){.bldg{justify-self:start;max-width:560px}}
-@media (max-width:480px){.bldg{--fl-h:74px}}
-.bldg .floor{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:stretch;margin-bottom:6px}
-.bldg .fl-label{font-weight:800;font-size:20px;color:var(--ink-3);display:flex;align-items:center;justify-content:flex-end;letter-spacing:-.02em}
-.bldg .fl-row{display:flex;gap:5px;min-height:var(--fl-h)}
-.blk{flex:var(--w) 1 0;min-width:66px;border:1.5px solid var(--ink);border-radius:4px;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:6px 9px;text-align:left;background:#fff;color:var(--ink);line-height:1.2;cursor:pointer;transition:transform .12s}
-.blk:hover{transform:translateY(-2px)}
-.blk .n{font-weight:700;font-size:14px;word-break:keep-all;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.blk .a{font-size:12px;opacity:.72;white-space:nowrap}
-.blk.live{background:var(--ink);border-color:var(--ink);color:#fff}
-.blk.soon{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.blk.later{background:#fff;border-style:dashed;border-color:#9AA0B3;color:var(--ink-2)}
-@media (max-width:480px){
-  .bldg .floor{grid-template-columns:32px 1fr;gap:8px}
-  .bldg .fl-label{font-size:17px}
-  .blk{padding:6px 6px;min-width:54px}
-  .blk .n{font-size:12.5px}.blk .a{font-size:11px}
-}
-.bldg .ground{margin-left:52px;border-top:2px solid var(--ink);padding-top:10px;display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--ink-3)}
-.bldg .legend{margin-top:16px;margin-left:52px;display:flex;flex-wrap:wrap;gap:14px 18px;font-size:13px;color:var(--ink-2)}
-.bldg .hint{margin-left:52px;margin-top:8px;font-size:13px;color:var(--ink-3)}
-@media (max-width:480px){.bldg .ground,.bldg .legend,.bldg .hint{margin-left:40px}}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px;border:1.5px solid var(--ink)}
-.legend i.live{background:var(--ink)}.legend i.soon{background:var(--gold);border-color:var(--gold)}.legend i.later{background:#fff;border-style:dashed;border-color:#9AA0B3}
-@media (prefers-reduced-motion:no-preference){
-  .bldg .floor,.bldg .ground{animation:rise .5s ease-out both}
-  .bldg .floor[data-floor="1"]{animation-delay:.05s}.bldg .floor[data-floor="2"]{animation-delay:.18s}
-  .bldg .floor[data-floor="3"]{animation-delay:.31s}.bldg .floor[data-floor="4"]{animation-delay:.44s}
-}
-@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* ---------- 히어로 ---------- */
+.hero{padding:56px 0 40px}
+@media (max-width:760px){.hero{padding:32px 0 24px}}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:28px}}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px 0 8px;border-radius:999px;background:var(--point-soft);color:var(--point-deep);font-size:13px;font-weight:700}
+.hero .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--point)}
+.hero h1{margin-top:18px;font-size:clamp(32px,4.8vw,54px);font-weight:800;letter-spacing:-.04em;line-height:1.18}
+.hero p{margin-top:16px;font-size:17px;color:var(--text-2);max-width:520px}
+@media (max-width:640px){.hero p{font-size:15.5px}}
+.hero .points{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--text-2);font-weight:500}
+.hero .points span{display:inline-flex;align-items:center;gap:6px}
+.hero .points svg{width:16px;height:16px;color:var(--point)}
 
-/* 층별 공간 목록 */
-.floor-group{display:grid;grid-template-columns:220px 1fr;gap:40px;padding:48px 0;border-top:1px solid var(--line)}
-.floor-group:last-child{padding-bottom:0}
-@media (max-width:860px){.floor-group{grid-template-columns:1fr;gap:20px;padding:40px 0}}
-.fg-head{position:sticky;top:calc(var(--header-h) + 24px);align-self:start}
-@media (max-width:860px){.fg-head{position:static}}
-.fg-head .num{font-size:64px;font-weight:800;line-height:1;letter-spacing:-.04em}
-.fg-head .num small{font-size:20px;font-weight:600;color:var(--ink-3);letter-spacing:0;margin-left:6px}
-.fg-head .tag{margin-top:10px;font-size:17px;font-weight:700}
-.fg-head p{margin-top:8px;color:var(--ink-2);font-size:15px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
-.card{border:1px solid var(--line);border-top-width:3px;border-radius:var(--radius);padding:22px 22px 20px;background:#fff;display:flex;flex-direction:column;gap:12px;scroll-margin-top:calc(var(--header-h) + 20px)}
-.card.live{border-top-color:var(--ink)}.card.soon{border-top-color:var(--gold)}.card.later{border-top-color:#B9BEC9}
-.card.hl{box-shadow:0 0 0 3px var(--gold-soft),0 0 0 5px var(--gold)}
-.card .photo{aspect-ratio:16/10;border-radius:4px;overflow:hidden;background:var(--stone);margin:-4px 0 4px}
-.card .photo img{width:100%;height:100%;object-fit:cover}
-.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
-.pill.live{background:var(--ink);color:#fff}.pill.soon{background:var(--gold-soft);color:var(--gold-deep)}.pill.later{background:var(--stone);color:var(--ink-2)}
-.pill.pending{background:var(--gold-soft);color:var(--gold-deep)}.pill.confirmed{background:var(--ok-soft);color:var(--ok)}.pill.cancelled{background:var(--stone);color:var(--ink-3)}
-.card h3{font-size:20px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
-.card .meta{font-size:14px;color:var(--ink-3);margin-top:2px}
-.card .desc{font-size:15px;color:var(--ink-2)}
-.card .price{font-size:14px;font-weight:600;color:var(--gold-deep)}
-.spec{display:grid;grid-template-columns:max-content 1fr;gap:5px 14px;font-size:14px;padding-top:10px;border-top:1px solid var(--stone-2)}
-.spec dt{color:var(--ink-3)}.spec dd{color:var(--ink)}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--ink-2)}
-.card .cta{margin-top:auto;padding-top:6px}
-.card .cta .btn{width:100%}
+.quick{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:10px;display:grid;grid-template-columns:1.2fr 1fr auto;gap:8px;align-items:end}
+@media (max-width:640px){.quick{grid-template-columns:1fr;padding:14px}}
+.quick .f{padding:6px 10px 2px}
+.quick label{display:block;font-size:12px;font-weight:700;color:var(--text-3);margin-bottom:2px}
+.quick select,.quick input{width:100%;height:36px;border:0;background:transparent;font-size:15.5px;font-weight:600;padding:0;appearance:none;-webkit-appearance:none;color:var(--text)}
+.quick select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238B95A1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 4px center;padding-right:22px}
+.quick .btn{height:52px;border-radius:12px}
+@media (max-width:640px){.quick .f{padding:4px 2px;border-bottom:1px solid var(--line-2)}.quick .btn{margin-top:6px}}
 
-/* 예약 */
-.book-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:24px;align-items:start}
-@media (max-width:900px){.book-grid{grid-template-columns:1fr}}
-.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-@media (max-width:640px){.panel{padding:20px 18px}}
-.panel h3{font-size:18px;font-weight:700;margin-bottom:16px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
-.field .help{font-size:13px;color:var(--ink-3);margin-top:6px}
-.field input[type=text],.field input[type=tel],.field input[type=email],.field input[type=date],.field input[type=number],.field select,.field textarea{
-  width:100%;height:48px;padding:0 14px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;font-size:15px;color:var(--ink);appearance:none;-webkit-appearance:none;
-}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;border-radius:20px;padding:20px;min-height:168px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;transition:transform .15s;overflow:hidden}
+.tile:hover{transform:translateY(-3px)}
+.tile .ic{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center}
+.tile .ic svg{width:22px;height:22px}
+.tile .t{display:block;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+.tile .s{display:block;font-size:13px;color:var(--text-2);margin-top:3px;font-weight:500}
+.tile .badge{position:absolute;top:16px;right:16px}
+@media (max-width:900px){.bento{display:flex;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;margin:0 -20px;padding:2px 20px 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.bento::-webkit-scrollbar{display:none}.tile{flex:0 0 200px;min-height:150px;scroll-snap-align:start}}
+
+/* ---------- 공간 카드 ---------- */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:22px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{height:40px;padding:0 16px;border-radius:999px;background:var(--surface-2);font-size:14.5px;font-weight:600;color:var(--text-2);white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.tab .n{font-size:12px;color:var(--text-3);font-weight:600}
+.tab.on{background:var(--dark);color:#fff}
+.tab.on .n{color:rgba(255,255,255,.6)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.grid{grid-template-columns:1fr 1fr;gap:14px}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s;scroll-margin-top:calc(var(--header-h) + 16px)}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card.hl{box-shadow:0 0 0 3px var(--point-line),var(--shadow-lg)}
+.cover{aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cover img{width:100%;height:100%;object-fit:cover}
+.cover .big{width:64px;height:64px;border-radius:20px;background:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center}
+.cover .big svg{width:32px;height:32px}
+.cover .fl{position:absolute;left:14px;bottom:12px;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.85);border-radius:7px;padding:3px 8px;color:var(--text-2)}
+.cover .badge{position:absolute;top:12px;left:12px}
+.card .body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1.3}
+.card .meta{font-size:13.5px;color:var(--text-3);margin-top:-6px}
+.card .desc{font-size:14.5px;color:var(--text-2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px}
+.card .foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card .price{font-size:14px;font-weight:700;color:var(--text)}
+.card .price small{font-weight:500;color:var(--text-3);font-size:12.5px}
+.card details{margin-top:-2px}
+.card summary{list-style:none;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-3);display:inline-flex;align-items:center;gap:4px}
+.card summary::-webkit-details-marker{display:none}
+.card summary svg{width:14px;height:14px;transition:transform .15s}
+.card details[open] summary svg{transform:rotate(180deg)}
+.card dl{margin-top:8px;display:grid;grid-template-columns:max-content 1fr;gap:4px 12px;font-size:13.5px}
+.card dt{color:var(--text-3)}.card dd{color:var(--text)}
+
+/* ---------- 층별 안내 ---------- */
+.floors{display:grid;gap:10px}
+.fl-row{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center}
+@media (max-width:560px){.fl-row{grid-template-columns:52px 1fr;padding:16px}}
+.fl-row .num{font-size:30px;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--text)}
+.fl-row .num small{font-size:13px;font-weight:700;color:var(--text-3);margin-left:2px;letter-spacing:0}
+.fl-row .tag-line{font-size:14px;font-weight:700;margin-bottom:8px}
+.fl-row .chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;color:var(--text)}
+.chip:hover{border-color:var(--text-4);background:var(--surface)}
+.chip i,.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.chip i.live,.dot.live{background:var(--point)}.chip i.soon,.dot.soon{background:var(--dark)}.chip i.later,.dot.later{background:var(--text-4)}
+.fl-legend{margin-top:14px;display:flex;gap:16px;font-size:13px;color:var(--text-3)}
+.fl-legend span{display:inline-flex;align-items:center;gap:6px}
+
+/* ---------- 예약 ---------- */
+.book{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+@media (max-width:960px){.book{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px}
+@media (max-width:640px){.panel{padding:20px 18px;border-radius:18px}}
+.stepline{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-3);font-weight:600;margin-bottom:22px}
+.stepline b{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--dark);color:#fff;font-size:12px;margin-right:4px}
+.stepline .sep{flex:1;height:1px;background:var(--line)}
+.stepline .off b{background:var(--surface-2);color:var(--text-3)}
+.blk{margin-bottom:26px}
+.blk > .lbl{display:block;font-size:14px;font-weight:700;margin-bottom:10px}
+.blk .hint{font-size:13px;color:var(--text-3);margin-top:8px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;color:var(--text)}
+.pill:hover{border-color:var(--text-4)}
+.pill.on{border-color:var(--point);background:var(--point-soft);color:var(--point-deep)}
+.pill small{font-size:11.5px;font-weight:600;color:var(--text-3)}
+.pill.on small{color:var(--point-deep);opacity:.8}
+.dates{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
+.dates::-webkit-scrollbar{display:none}
+.date{flex:0 0 58px;height:70px;border-radius:14px;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.date .w{font-size:12px;color:var(--text-3);font-weight:600}
+.date .d{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.date .m{font-size:11px;color:var(--text-3)}
+.date.sun .w,.date.sun .d{color:var(--err)}
+.date.sat .w,.date.sat .d{color:#3182F6}
+.date.on{background:var(--dark);border-color:var(--dark)}
+.date.on .w,.date.on .d,.date.on .m{color:#fff}
+.date.pick{flex-basis:70px;font-size:13px;font-weight:700;color:var(--text-2);position:relative;cursor:pointer}
+.date.pick input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.slots{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+@media (max-width:440px){.slots{grid-template-columns:repeat(4,1fr)}}
+.slot{height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:14px;font-weight:600;color:var(--text)}
+.slot:hover{border-color:var(--text-4)}
+.slot.off{background:repeating-linear-gradient(135deg,#F2F4F6 0 5px,#E9ECEF 5px 10px);color:var(--text-4);border-color:transparent;cursor:not-allowed}
+.slot.past{background:var(--surface-2);color:var(--text-4);border-color:transparent;cursor:not-allowed}
+.slot.sel{background:var(--point);color:#fff;border-color:var(--point)}
+.slot.start{background:var(--point-soft);color:var(--point-deep);border-color:var(--point)}
+.slot-legend{display:flex;gap:14px;font-size:12.5px;color:var(--text-3);margin-top:10px}
+.slot-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;border:1px solid var(--line);vertical-align:-1px;margin-right:5px;background:#fff}
+.slot-legend i.off{background:repeating-linear-gradient(135deg,#F2F4F6 0 3px,#E9ECEF 3px 6px);border-color:transparent}
+.slot-legend i.sel{background:var(--point);border-color:var(--point)}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:700;color:var(--text-2);margin-bottom:6px}
+.field input[type=text],.field input[type=tel],.field input[type=email],.field input[type=number],.field select,.field textarea{width:100%;height:50px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:15px;appearance:none;-webkit-appearance:none;color:var(--text)}
 .field textarea{height:auto;min-height:120px;padding:12px 14px;line-height:1.55;resize:vertical}
-.field select{padding-right:42px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%2316213E' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink);outline:none}
+.field select{padding-right:40px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238B95A1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--text);outline:none}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-4)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:480px){.row2{grid-template-columns:1fr}}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2)}
-.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--ink);flex:none}
-.slots{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-@media (max-width:420px){.slots{grid-template-columns:repeat(4,1fr)}}
-.slot{height:42px;border:1px solid var(--line);border-radius:4px;background:#fff;font-size:13.5px;font-weight:500;cursor:pointer;color:var(--ink)}
-.slot:hover{border-color:var(--ink)}
-.slot.off{background:repeating-linear-gradient(135deg,#F1F1F1 0 6px,#E4E5E8 6px 12px);color:#A5AAB9;cursor:not-allowed;border-color:var(--stone-2)}
-.slot.past{background:var(--stone);color:#B4B8C4;cursor:not-allowed;border-color:var(--stone-2)}
-.slot.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
-.slot.start{background:var(--gold);color:var(--ink);border-color:var(--gold)}
-.slot-legend{display:flex;flex-wrap:wrap;gap:12px 16px;font-size:12.5px;color:var(--ink-3);margin-top:10px}
-.slot-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid var(--line);vertical-align:-1px;margin-right:5px;background:#fff}
-.slot-legend i.off{background:repeating-linear-gradient(135deg,#F1F1F1 0 3px,#E4E5E8 3px 6px)}
-.slot-legend i.sel{background:var(--ink);border-color:var(--ink)}
-.summary{background:var(--ink);color:#fff;border-radius:var(--radius);padding:24px;position:sticky;top:calc(var(--header-h) + 24px)}
-@media (max-width:900px){.summary{position:static}}
-.summary h3{font-size:15px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:14px}
-.summary dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:15px}
-.summary dt{color:rgba(255,255,255,.6)}
-.summary dd{font-weight:600}
-.summary .note{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);font-size:13.5px;color:rgba(255,255,255,.75)}
-.summary .note a{color:var(--gold)}
-.msg{border-radius:var(--radius);padding:12px 14px;font-size:14px;margin-top:12px}
-.msg.err{background:var(--err-soft);color:var(--err)}
-.msg.ok{background:var(--ok-soft);color:var(--ok)}
-.msg.info{background:var(--gold-soft);color:var(--gold-deep)}
-.done{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--radius);padding:28px}
-.done .code{font-size:34px;font-weight:800;letter-spacing:.02em;margin:6px 0 14px}
-.done dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:15px;margin-bottom:16px}
-.done dt{color:var(--ink-3)}
-.done p{font-size:14.5px;color:var(--ink-2)}
-.done .btns{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--text-2);line-height:1.5;padding:12px 14px;background:var(--surface);border-radius:12px;cursor:pointer}
+.agree input{width:18px;height:18px;margin-top:2px;accent-color:var(--point);flex:none}
+.msg{border-radius:12px;padding:12px 14px;font-size:14px;margin-top:12px;font-weight:500}
+.msg.err{background:var(--err-soft);color:var(--err)}.msg.ok{background:var(--ok-soft);color:var(--ok)}.msg.info{background:var(--point-soft);color:var(--point-deep)}
 
-/* 예약 조회 */
-.lookup-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start}
-@media (max-width:860px){.lookup-grid{grid-template-columns:1fr}}
-.res-list{display:flex;flex-direction:column;gap:12px}
-.res{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:#fff;display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:start}
-.res .t{font-weight:700;font-size:16px}
-.res .d{font-size:14px;color:var(--ink-2);grid-column:1}
-.res .c{font-size:13px;color:var(--ink-3);grid-column:1}
+.side{position:sticky;top:calc(var(--header-h) + 20px)}
+.side .card-s{background:var(--dark);color:#fff;border-radius:var(--r-lg);padding:24px}
+.side h3{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);margin-bottom:14px}
+.side dl{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;font-size:15px}
+.side dt{color:rgba(255,255,255,.55)}
+.side dd{font-weight:700}
+.side .note{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
+.side .note a{color:var(--point);font-weight:600}
+@media (max-width:960px){.side{display:none}}
+
+.done{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 28px;text-align:center}
+.done .ck{width:60px;height:60px;border-radius:50%;background:var(--point-soft);color:var(--point);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.done .ck svg{width:30px;height:30px}
+.done h3{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.done .code{margin:16px auto 6px;display:inline-block;padding:10px 18px;border-radius:12px;background:var(--surface);font-size:26px;font-weight:800;letter-spacing:.03em}
+.done dl{margin:18px auto 0;max-width:360px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;text-align:left}
+.done dt{color:var(--text-3)}
+.done p{margin-top:18px;font-size:14px;color:var(--text-2);text-align:left;background:var(--surface);border-radius:12px;padding:14px}
+.done .btns{margin-top:18px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+/* 모바일 하단 바 */
+.bookbar{position:fixed;left:0;right:0;bottom:0;z-index:55;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:none;align-items:center;gap:12px;box-shadow:0 -6px 24px rgba(25,31,40,.08)}
+.bookbar .info{flex:1;min-width:0}
+.bookbar .info b{display:block;font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bookbar .info span{font-size:12.5px;color:var(--text-3)}
+.bookbar .btn{height:48px;padding:0 22px}
+@media (max-width:960px){.bookbar.show{display:flex}}
+.bottombar{position:fixed;left:0;right:0;bottom:0;z-index:54;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:none;gap:8px}
+.bottombar .btn{height:48px}
+.bottombar .btn.line{flex:0 0 auto;padding:0 18px}
+.bottombar .btn.primary{flex:1}
+@media (max-width:900px){.bottombar.show{display:flex}body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}}
+
+/* ---------- 예약 확인 ---------- */
+.check{display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
+@media (max-width:900px){.check{grid-template-columns:1fr}}
+.res{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:start}
+.res .t{font-weight:800;font-size:16px;letter-spacing:-.01em}
+.res .d{font-size:14px;color:var(--text-2)}
+.res .c{font-size:12.5px;color:var(--text-3);margin-top:4px}
 .res .act{grid-column:2;grid-row:1 / span 3;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-.empty{padding:26px;border:1px dashed var(--line);border-radius:var(--radius);color:var(--ink-3);font-size:14.5px;text-align:center}
+.empty{padding:28px;border:1px dashed var(--line);border-radius:var(--r);color:var(--text-3);font-size:14px;text-align:center;background:#fff}
+.res-list{display:grid;gap:10px}
 
-/* 이용 방법 */
-.howto{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-@media (max-width:860px){.howto{grid-template-columns:1fr}}
-.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
-.step .no{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px}
-.step h3{margin-top:16px;font-size:19px;font-weight:700}
-.step p{margin-top:8px;color:var(--ink-2);font-size:15px}
-.safe{margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--radius);padding:20px 22px}
-.safe strong{font-size:15px}.safe p{font-size:14.5px;color:var(--ink-2);margin-top:4px}
-@media (max-width:560px){.safe{grid-template-columns:1fr}}
+/* ---------- 이용 안내 · FAQ ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.step .ic{width:44px;height:44px;border-radius:14px;background:var(--point-soft);color:var(--point-deep);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step .ic svg{width:22px;height:22px}
+.step .k{font-size:12.5px;font-weight:700;color:var(--point-deep);margin-bottom:4px}
+.step h3{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.step p{margin-top:8px;font-size:14.5px;color:var(--text-2)}
+.safe{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14px;color:var(--text-2);background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px}
+.safe b{color:var(--text);font-weight:700}
+.safe span{display:inline-flex;align-items:center;gap:6px}
+.safe svg{width:16px;height:16px;color:var(--ok)}
+.faq{margin-top:56px;max-width:760px}
+.faq h3{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.qa{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;cursor:pointer;padding:18px 0;font-size:16px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary svg{width:18px;height:18px;color:var(--text-3);flex:none;transition:transform .15s}
+.qa[open] summary svg{transform:rotate(45deg)}
+.qa p{padding:0 0 18px;font-size:15px;color:var(--text-2)}
 
-/* 오픈 일정 */
-.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;margin-top:8px}
-.tl::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:var(--line)}
-.tl-item{position:relative;padding-top:30px}
-.tl-item::before{content:"";position:absolute;top:2px;left:0;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #B9BEC9;z-index:1}
-.tl-item.done::before{background:var(--ink);border-color:var(--ink)}
-.tl-item.next::before{background:var(--gold);border-color:var(--gold)}
-.tl-item .when{font-weight:800;font-size:22px;letter-spacing:-.02em;line-height:1.2}
-.tl-item .state{font-size:13px;font-weight:600;margin-top:4px}
-.tl-item.done .state{color:var(--ink)}.tl-item.next .state{color:var(--gold-deep)}.tl-item.later .state{color:var(--ink-3)}
-.tl-item ul{list-style:none;margin-top:12px;font-size:14.5px;color:var(--ink-2)}
-.tl-item li{padding:5px 0;border-top:1px solid var(--stone-2)}
-.tl-note{margin-top:32px;font-size:14px;color:var(--ink-3)}
-@media (max-width:760px){
-  .tl{grid-template-columns:1fr;gap:0}
-  .tl::before{left:7px;right:auto;top:0;bottom:0;width:2px;height:auto}
-  .tl-item{padding:0 0 32px 34px}.tl-item::before{left:0;top:5px}
-}
+/* ---------- 오픈 일정 ---------- */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:760px){.timeline{grid-template-columns:1fr 1fr}}
+@media (max-width:440px){.timeline{grid-template-columns:1fr}}
+.tl{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.tl .when{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.tl .st{margin-top:4px}
+.tl ul{list-style:none;margin-top:12px;font-size:14px;color:var(--text-2)}
+.tl li{padding:4px 0 4px 12px;position:relative}
+.tl li::before{content:"";position:absolute;left:0;top:12px;width:4px;height:4px;border-radius:50%;background:var(--text-4)}
+.tl.now{border-color:var(--point);box-shadow:0 0 0 3px var(--point-soft)}
 
-/* 파트너 */
-.partners{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:760px){.partners{grid-template-columns:1fr}}
-.pt{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:start}
-.pt h3{font-size:17px;font-weight:700}
-.pt p{grid-column:1 / -1;font-size:14.5px;color:var(--ink-2)}
-.pt .where{font-size:12.5px;color:var(--gold-deep);background:var(--gold-soft);border-radius:999px;padding:3px 10px;white-space:nowrap}
-.partner-cta{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.partner-cta span{font-size:14px;color:var(--ink-3)}
+/* ---------- 제휴 배너 ---------- */
+.band{background:var(--dark);color:#fff;border-radius:var(--r-lg);padding:44px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+@media (max-width:760px){.band{padding:32px 24px;grid-template-columns:1fr}}
+.band h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.03em;line-height:1.3}
+.band p{margin-top:10px;font-size:15px;color:rgba(255,255,255,.7);max-width:560px}
+.band .who{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px}
+.band .who span{height:28px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:13px;display:inline-flex;align-items:center}
 
-/* 오시는 길 · 문의 */
-.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px}
-@media (max-width:860px){.contact-grid{grid-template-columns:1fr;gap:40px}}
-.addr{font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
-.addr small{display:block;font-size:14px;font-weight:500;color:var(--ink-3);margin-top:6px}
-.info{list-style:none;margin-top:22px;border-top:1px solid var(--line)}
-.info li{display:grid;grid-template-columns:72px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
-.info li b{color:var(--ink-3);font-weight:500}
-.maplinks{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
-.direct{margin-top:18px;font-size:15px;color:var(--ink-2)}
-.direct a{font-weight:600;color:var(--ink);text-decoration:none}
+/* ---------- 오시는 길 · 문의 ---------- */
+.visit{display:grid;grid-template-columns:1fr 1.1fr;gap:40px}
+@media (max-width:900px){.visit{grid-template-columns:1fr;gap:36px}}
+.addr{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.35}
+.addr small{display:block;font-size:14px;font-weight:500;color:var(--text-3);margin-top:6px}
+.info{list-style:none;margin-top:20px;display:grid;gap:8px}
+.info li{display:grid;grid-template-columns:24px 1fr;gap:12px;font-size:15px;color:var(--text-2);padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.info li svg{width:20px;height:20px;color:var(--text-3)}
+.info li b{color:var(--text);font-weight:700;display:block;font-size:13px;margin-bottom:2px}
+.maps{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.contact-direct{margin-top:18px;font-size:15px;color:var(--text-2)}
+.contact-direct a{font-weight:700;color:var(--text)}
 
-/* 푸터 */
-.site-footer{background:var(--ink);color:#fff;padding:56px 0 calc(40px + env(safe-area-inset-bottom,0px))}
-.site-footer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-@media (max-width:760px){.site-footer .wrap{grid-template-columns:1fr}}
-.site-footer .mark{font-size:22px;font-weight:800;letter-spacing:-.03em}
-.site-footer .mark small{font-size:13px;font-weight:500;opacity:.7;margin-left:10px}
-.site-footer p{font-size:14px;color:rgba(255,255,255,.72);margin-top:10px}
-.site-footer .col ul{list-style:none;font-size:14px;color:rgba(255,255,255,.85)}
-.site-footer .col li{padding:4px 0}.site-footer .col a{text-decoration:none}
-.site-footer .copy{grid-column:1 / -1;border-top:1px solid rgba(255,255,255,.14);padding-top:18px;font-size:12.5px;color:rgba(255,255,255,.5);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
-.site-footer .copy a{color:rgba(255,255,255,.5);text-decoration:none}
+/* ---------- 푸터 ---------- */
+.footer{background:#fff;border-top:1px solid var(--line);padding:40px 0 calc(28px + env(safe-area-inset-bottom,0px))}
+.footer .wrap{display:grid;grid-template-columns:1fr auto;gap:24px}
+@media (max-width:760px){.footer .wrap{grid-template-columns:1fr}}
+.footer .logo{font-size:17px}
+.footer p{margin-top:10px;font-size:13.5px;color:var(--text-3);line-height:1.7}
+.footer .links{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--text-2);font-weight:600;align-content:start}
+.footer .copy{grid-column:1 / -1;font-size:12.5px;color:var(--text-4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-top:16px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
 
-<header class="site-header">
+<div class="notice"><div class="wrap"><b>12월 오픈</b><span class="desk">이벤트홀·가챠샵·대형 파티룸·세미나 라운지가 문을 열어요.</span><a href="#book">사전 예약 받는 중</a></div></div>
+
+<header class="header">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="한아름 홈"><span class="mark">한아름</span><span class="place">화양동 10-1</span></a>
-    <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav"><span></span></button>
-    <nav class="nav" id="nav">
-      <a href="#spaces">공간 안내</a>
-      <a href="#book">예약하기</a>
-      <a href="#lookup">예약 조회</a>
-      <a href="#schedule">오픈 일정</a>
-      <a href="#partners">제휴</a>
-      <a href="#visit">오시는 길</a>
-      <a class="btn sm" href="#contact">문의</a>
+    <a class="logo" href="#top" aria-label="화양 스페이스 홈"><i></i>화양 스페이스<small>HWAYANG SPACE</small></a>
+    <nav class="gnb" id="gnb">
+      <a href="#spaces">공간</a><a href="#book">예약</a><a href="#check">예약 확인</a><a href="#guide">이용 안내</a><a href="#visit">오시는 길</a><a href="#contact">문의</a>
     </nav>
+    <div class="right">
+      <a class="btn primary sm" href="#book">예약하기</a>
+      <button class="menu-btn" id="menuBtn" aria-label="메뉴" aria-expanded="false" aria-controls="gnb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
   </div>
 </header>
 
 <main id="top">
 
-<!-- ================= 첫 화면 ================= -->
+<!-- ================= 히어로 ================= -->
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1>건대 화양동 10-1,<br>한 건물에 아홉 개의 공간</h1>
-      <p class="lead">1층 무인 카페와 게임파티룸부터 4층 세미나 모임공간까지, 층마다 쓰임이 다른 공간을 온라인으로 예약해 이용합니다. 예약한 시간에 도어락 비밀번호로 들어가는 무인 운영이라 늦은 시간에도 이용할 수 있습니다.</p>
-      <div class="actions">
-        <a class="btn" href="#book">지금 예약하기</a>
-        <a class="btn ghost" href="#spaces">공간 둘러보기</a>
+      <span class="eyebrow"><i></i>건대입구 · 화양동 10-1</span>
+      <h1>모임도 파티도 연습도,<br>건대 앞 한 건물에서</h1>
+      <p>화양 스페이스는 광진구 화양동 10-1 건물 1층부터 4층까지, 아홉 개 공간을 예약제로 운영해요. 앱 설치 없이 여기서 바로 예약하고, 예약 시간에 도어락 비밀번호로 들어가면 돼요.</p>
+      <div class="points">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>24시간 무인 운영</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>예약 후 도어락으로 바로 입장</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>1층 카페·가챠샵은 예약 없이</span>
       </div>
-      <p class="facts">지상 4개 층, 9개 공간, 약 835평 규모입니다. 두 곳은 운영 중이고 나머지는 2026년 12월부터 차례로 문을 엽니다.</p>
-    </div>
-    <div class="bldg" aria-label="층별 공간 구성도">
-      <div id="floors"></div>
-      <div class="ground"><span>서울 광진구 화양동 10-1</span><span>건대입구역 인근</span></div>
-      <div class="legend">
-        <span><i class="live"></i>운영 중</span>
-        <span><i class="soon"></i>2026년 12월 오픈</span>
-        <span><i class="later"></i>2027년 오픈</span>
+      <div class="quick">
+        <div class="f"><label for="qCat">무엇을 하나요</label>
+          <select id="qCat"><option value="party">파티·모임</option><option value="event">행사·팬미팅·플리마켓</option><option value="study">연습·세미나·워크숍</option><option value="lounge">혼자·둘이 쉬기</option></select></div>
+        <div class="f"><label for="qDate">언제 오나요</label><input type="date" id="qDate"></div>
+        <button class="btn primary" id="qGo" type="button">빈 시간 보기</button>
       </div>
-      <p class="hint">칸을 누르면 해당 공간 소개로 이동합니다. 칸의 너비는 같은 층 안에서의 면적 비율입니다.</p>
     </div>
+    <div class="bento" id="bento"></div>
   </div>
 </section>
 
-<!-- ================= 층별 공간 안내 ================= -->
+<!-- ================= 공간 ================= -->
 <section class="sec" id="spaces">
   <div class="wrap">
     <div class="sec-head">
-      <h2>아래층은 지나가다 들르는 곳,<br>위층은 예약하고 머무는 곳</h2>
-      <p>1층은 문을 열어 두고 손님을 받는 카페와 가챠샵, 행사장이 있고, 위로 올라갈수록 파티룸, 연습실, 세미나룸처럼 예약해서 쓰는 공간으로 바뀝니다. 층마다 성격이 달라 소음과 동선이 겹치지 않습니다.</p>
+      <div><h2 class="h2">공간 둘러보기</h2><p class="sub">1층은 지나가다 들르는 곳, 위층은 예약하고 머무는 곳. 층이 올라갈수록 조용해져요.</p></div>
+      <a class="more" href="#floors">층별로 보기</a>
     </div>
-    <div id="floorGroups"><p class="empty">공간 정보를 불러오는 중입니다.</p></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="grid" id="grid"><div class="empty">공간을 불러오는 중이에요.</div></div>
+  </div>
+</section>
+
+<!-- ================= 층별 안내 ================= -->
+<section class="sec gray" id="floors">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="h2">층별 안내</h2><p class="sub">지상 4개 층, 약 835평. 공간 이름을 누르면 소개로 이동해요.</p></div></div>
+    <div class="floors" id="floorList"></div>
+    <div class="fl-legend"><span><i class="dot live"></i>운영 중</span><span><i class="dot soon"></i>12월 오픈</span><span><i class="dot later"></i>2027년 오픈</span></div>
   </div>
 </section>
 
 <!-- ================= 예약 ================= -->
-<section class="sec stone" id="book">
+<section class="sec" id="book">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>예약하기</h2>
-      <p>공간과 날짜를 고르면 그날 비어 있는 시간이 바로 보입니다. 예약 요청을 보내면 운영팀이 확인한 뒤 확정 안내를 드립니다.</p>
-    </div>
-    <div class="book-grid">
+    <div class="sec-head"><div><h2 class="h2">예약하기</h2><p class="sub">공간과 날짜를 고르면 비어 있는 시간이 바로 보여요. 요청을 보내면 운영팀이 확인하고 문자로 확정해 드려요.</p></div></div>
+    <div class="book">
       <div>
         <div class="panel" id="bookForm">
-          <h3>공간과 시간</h3>
-          <div class="field">
-            <label for="bSpace">공간</label>
-            <select id="bSpace"></select>
-            <p class="help" id="bSpaceHelp"></p>
-          </div>
-          <div class="field hidden" id="bRoomWrap">
-            <label for="bRoom">룸</label>
-            <select id="bRoom"></select>
-          </div>
-          <div class="field">
-            <label for="bDate">날짜</label>
-            <input type="date" id="bDate">
-            <p class="help" id="bDateHelp"></p>
-          </div>
-          <div class="field">
-            <label>이용 시간</label>
-            <div class="slots" id="slots"></div>
-            <div class="slot-legend">
-              <span><i></i>비어 있음</span><span><i class="off"></i>예약됨</span><span><i class="sel"></i>내가 고른 시간</span>
-            </div>
-            <p class="help" id="slotHelp">시작 시각을 누른 뒤, 마지막으로 이용할 시각을 한 번 더 누르세요.</p>
-          </div>
+          <div class="stepline"><span><b>1</b>공간·시간</span><span class="sep"></span><span class="off"><b>2</b>예약자 정보</span><span class="sep"></span><span class="off"><b>3</b>완료</span></div>
 
-          <h3 style="margin-top:28px">예약자 정보</h3>
+          <div class="blk"><span class="lbl">어떤 공간인가요?</span><div class="pills" id="spacePills"></div><p class="hint" id="spaceHint"></p></div>
+          <div class="blk hidden" id="roomBlk"><span class="lbl">룸을 골라 주세요</span><div class="pills" id="roomPills"></div></div>
+          <div class="blk"><span class="lbl">날짜</span><div class="dates" id="dates"></div><p class="hint" id="dateHint"></p></div>
+          <div class="blk"><span class="lbl">시간</span><div class="slots" id="slots"></div>
+            <div class="slot-legend"><span><i></i>비어 있음</span><span><i class="off"></i>예약됨</span><span><i class="sel"></i>내 선택</span></div>
+            <p class="hint" id="slotHint">시작 시각을 누르고, 마지막으로 이용할 시각을 한 번 더 눌러 주세요.</p></div>
+
+          <div class="stepline" style="margin-top:34px"><span><b>2</b>예약자 정보</span><span class="sep"></span></div>
           <div class="row2">
-            <div class="field"><label for="bName">이름</label><input type="text" id="bName" maxlength="40" autocomplete="name"></div>
+            <div class="field"><label for="bName">이름</label><input type="text" id="bName" maxlength="40" autocomplete="name" placeholder="홍길동"></div>
             <div class="field"><label for="bPhone">휴대폰 번호</label><input type="tel" id="bPhone" placeholder="010-0000-0000" autocomplete="tel"></div>
           </div>
           <div class="row2">
             <div class="field"><label for="bHead">인원</label><input type="number" id="bHead" min="1" max="500" placeholder="명"></div>
-            <div class="field"><label for="bPurpose">용도 (선택)</label><input type="text" id="bPurpose" maxlength="200" placeholder="예: 생일 모임, 동아리 정기 모임"></div>
+            <div class="field"><label for="bPurpose">용도 <span style="font-weight:500;color:var(--text-3)">(선택)</span></label><input type="text" id="bPurpose" maxlength="200" placeholder="생일 모임, 동아리 정기 모임…"></div>
           </div>
           <input type="text" id="bHp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <div class="field">
-            <label class="check"><input type="checkbox" id="bAgree"><span>예약 확인과 안내를 위해 이름과 연락처를 수집하며, 예약 관리 목적 외에는 쓰지 않습니다. 동의합니다.</span></label>
-          </div>
+          <label class="agree"><input type="checkbox" id="bAgree"><span>예약 확인과 안내를 위해 이름과 연락처를 수집하고, 예약 관리 목적 외에는 쓰지 않아요. 동의합니다.</span></label>
           <div id="bMsg"></div>
-          <div style="margin-top:18px"><button class="btn block" id="bSubmit" type="button">예약 요청 보내기</button></div>
+          <button class="btn primary lg full" id="bSubmit" type="button" style="margin-top:16px">예약 요청 보내기</button>
         </div>
 
         <div class="done hidden" id="bookDone">
-          <div style="font-size:14px;color:var(--ink-3)">예약번호</div>
+          <div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></div>
+          <h3>예약 요청을 받았어요</h3>
           <div class="code" id="dCode"></div>
-          <dl>
-            <dt>공간</dt><dd id="dSpace"></dd>
-            <dt>일시</dt><dd id="dWhen"></dd>
-          </dl>
-          <p id="dNote">예약 요청이 접수되었습니다. 운영팀이 확인한 뒤 문자 또는 전화로 확정 안내를 드리며, 도어락 비밀번호는 확정 후 이용일에 전달됩니다. 예약번호와 휴대폰 번호로 아래 예약 조회에서 상태를 확인할 수 있습니다.</p>
-          <div class="btns">
-            <a class="btn ghost" href="#lookup">예약 조회</a>
-            <button class="btn" type="button" id="bAgain">다른 예약 하기</button>
-          </div>
+          <dl><dt>공간</dt><dd id="dSpace"></dd><dt>일시</dt><dd id="dWhen"></dd><dt>상태</dt><dd>운영팀 확인 중</dd></dl>
+          <p id="dNote"></p>
+          <div class="btns"><a class="btn line" href="#check">예약 확인</a><button class="btn dark" type="button" id="bAgain">다른 예약 하기</button></div>
         </div>
       </div>
 
-      <aside class="summary" aria-live="polite">
-        <h3>선택한 내용</h3>
-        <dl>
-          <dt>공간</dt><dd id="sSpace">-</dd>
-          <dt>날짜</dt><dd id="sDate">-</dd>
-          <dt>시간</dt><dd id="sTime">-</dd>
-          <dt>이용 시간</dt><dd id="sHours">-</dd>
-        </dl>
-        <div class="note" id="sNote">예약 후 취소는 예약 조회에서 직접 할 수 있습니다. 자정을 넘기는 이용은 두 날짜로 나눠 예약하거나 <a href="#contact">문의</a>해 주세요.</div>
+      <aside class="side">
+        <div class="card-s" aria-live="polite">
+          <h3>선택한 내용</h3>
+          <dl><dt>공간</dt><dd id="sSpace">-</dd><dt>날짜</dt><dd id="sDate">-</dd><dt>시간</dt><dd id="sTime">-</dd><dt>이용</dt><dd id="sHours">-</dd></dl>
+          <div class="note">취소는 <a href="#check">예약 확인</a>에서 직접 할 수 있어요. 자정을 넘기는 이용은 두 날짜로 나누거나 문의 남겨 주세요.</div>
+        </div>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- ================= 예약 조회 ================= -->
-<section class="sec" id="lookup">
+<!-- ================= 예약 확인 ================= -->
+<section class="sec gray" id="check">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>예약 조회·취소</h2>
-      <p>예약할 때 적은 휴대폰 번호로 조회합니다. 예약번호를 함께 넣으면 그 건만 보입니다.</p>
-    </div>
-    <div class="lookup-grid">
+    <div class="sec-head"><div><h2 class="h2">예약 확인·취소</h2><p class="sub">예약할 때 적은 휴대폰 번호로 조회해요. 이용일 전이면 직접 취소할 수 있어요.</p></div></div>
+    <div class="check">
       <div class="panel">
         <div class="field"><label for="lPhone">휴대폰 번호</label><input type="tel" id="lPhone" placeholder="010-0000-0000" autocomplete="tel"></div>
-        <div class="field"><label for="lCode">예약번호 (선택)</label><input type="text" id="lCode" placeholder="HR-000000-XXXX" style="text-transform:uppercase"></div>
+        <div class="field"><label for="lCode">예약번호 <span style="font-weight:500;color:var(--text-3)">(선택)</span></label><input type="text" id="lCode" placeholder="HS-000000-XXXX" style="text-transform:uppercase"></div>
         <div id="lMsg"></div>
-        <div style="margin-top:14px"><button class="btn block" type="button" id="lSubmit">조회하기</button></div>
+        <button class="btn dark lg full" type="button" id="lSubmit" style="margin-top:8px">조회하기</button>
       </div>
-      <div class="res-list" id="lList"><div class="empty">조회 결과가 여기에 표시됩니다.</div></div>
+      <div class="res-list" id="lList"><div class="empty">조회 결과가 여기에 보여요.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ================= 이용 방법 ================= -->
-<section class="sec stone" id="howto">
+<!-- ================= 이용 안내 · FAQ ================= -->
+<section class="sec" id="guide">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>예약부터 퇴실까지, 직원 없이 끝납니다</h2>
-      <p>카페와 가챠샵은 예약 없이 바로 이용하고, 나머지 공간은 예약제입니다. 세 단계면 충분합니다.</p>
+    <div class="sec-head"><div><h2 class="h2">이용은 이렇게</h2><p class="sub">직원이 없어도 예약부터 퇴실까지 막힘없이 진행돼요.</p></div></div>
+    <div class="steps">
+      <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4"/></svg></div><div class="k">1단계</div><h3>예약해요</h3><p>공간과 시간을 고르고 예약 요청을 보내요. 운영팀이 확인하면 확정 문자를 드려요.</p></div>
+      <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></div><div class="k">2단계</div><h3>도어락으로 들어가요</h3><p>이용일에 받은 비밀번호로 예약 시간에 들어가요. 직원은 없지만 전화하면 바로 도와드려요.</p></div>
+      <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-11 7 7-11 4z"/><path d="M12 6l1-2M15 9l2-1M14 3l1 .5M18 6l1.5-.5M11 11l2 2"/></svg></div><div class="k">3단계</div><h3>정리하고 나와요</h3><p>이용 시간 안에 정리하고 퇴실하면 끝. 다음 이용자를 위한 청소와 점검은 운영팀이 해요.</p></div>
     </div>
-    <div class="howto">
-      <div class="step"><div class="no">1</div><h3>공간과 시간을 정해 예약합니다</h3><p>이 페이지에서 비어 있는 시간을 보고 예약 요청을 보냅니다. 운영팀이 확인하면 확정 안내가 갑니다.</p></div>
-      <div class="step"><div class="no">2</div><h3>도어락 비밀번호로 들어갑니다</h3><p>확정 후 이용일에 안내받은 비밀번호로 예약 시간에 출입합니다. 상주 직원은 없고, 문의는 운영팀이 전화와 메시지로 응대합니다.</p></div>
-      <div class="step"><div class="no">3</div><h3>쓰고, 정리하고, 나오면 됩니다</h3><p>이용 시간 안에 정리를 마치고 퇴실합니다. 다음 이용자를 위한 청소와 점검은 운영팀이 맡습니다.</p></div>
+    <div class="safe"><b>안심하고 쓸 수 있게</b>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>공용 구역 CCTV 상시 관제</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>도어락 출입 기록</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>시설 보험 가입</span>
     </div>
-    <div class="safe">
-      <strong>안전하게 쓸 수 있도록</strong>
-      <p>공용 구역 CCTV를 상시 관제하고, 도어락 출입 기록을 남기며, 시설 보험에 가입해 운영합니다. 운영 중인 두 공간에서 같은 방식으로 관리해 왔습니다.</p>
+
+    <div class="faq" id="faq">
+      <h3>자주 묻는 질문</h3>
+      <details class="qa"><summary>예약은 언제 확정되나요?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>요청을 보내면 운영팀이 확인하고 문자로 확정을 드려요. 확정 전에도 그 시간은 다른 분이 고를 수 없게 잡혀 있어요.</p></details>
+      <details class="qa"><summary>취소나 변경은 어떻게 하나요?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>예약 확인 메뉴에서 휴대폰 번호로 조회하면 이용일 전까지 직접 취소할 수 있어요. 시간을 바꾸려면 취소 후 다시 예약하거나 문의 남겨 주세요.</p></details>
+      <details class="qa"><summary>아직 오픈 전인 공간도 예약할 수 있나요?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>네. 오픈 예정일 이후 날짜로 사전 예약 요청을 받고 있어요. 오픈 일정이 확정되면 순서대로 안내해 드려요.</p></details>
+      <details class="qa"><summary>주차할 수 있나요?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>건물 앞 주차장이 있어요. 이용 조건은 예약 확정 문자와 함께 안내해 드려요.</p></details>
+      <details class="qa"><summary>늦은 밤에도 이용할 수 있나요?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary><p>밍글카페와 가챠샵은 24시간 열려 있어요. 예약 공간은 예약한 시간이면 밤에도 도어락으로 들어갈 수 있어요. 자정을 넘기는 이용은 두 날짜로 나눠 예약해 주세요.</p></details>
     </div>
   </div>
 </section>
 
 <!-- ================= 오픈 일정 ================= -->
-<section class="sec" id="schedule">
+<section class="sec gray" id="schedule">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>차례로 문을 엽니다</h2>
-      <p>기존 시설을 최대한 살려 공사를 짧게 하고, 준비된 공간부터 순서대로 엽니다. 오픈 전 공간도 미리 예약 요청을 받고 있습니다.</p>
+    <div class="sec-head"><div><h2 class="h2">이렇게 열려요</h2><p class="sub">기존 시설을 살려 공사를 짧게 하고, 준비된 공간부터 차례로 열어요. 일정은 공사 진행에 따라 조금 바뀔 수 있어요.</p></div></div>
+    <div class="timeline">
+      <div class="tl"><div class="when">2026년 5월</div><div class="st"><span class="badge live">운영 중</span></div><ul><li>밍글카페 (1층)</li><li>게임파티룸 (1층)</li></ul></div>
+      <div class="tl now"><div class="when">2026년 12월</div><div class="st"><span class="badge soon">사전 예약 중</span></div><ul><li>이벤트홀 (1층)</li><li>가챠샵 (1층)</li><li>대형 파티룸 (2층)</li><li>세미나 라운지 (4층)</li></ul></div>
+      <div class="tl"><div class="when">2027년 4월</div><div class="st"><span class="badge later">오픈 예정</span></div><ul><li>룸형 파티룸 (2층)</li><li>연습실 (3층)</li></ul></div>
+      <div class="tl"><div class="when">2027년 6월</div><div class="st"><span class="badge later">전체 운영</span></div><ul><li>OTT 라운지 (2층)</li><li>9개 공간 모두 운영</li></ul></div>
     </div>
-    <div class="tl">
-      <div class="tl-item done"><div class="when">2026년 5월</div><div class="state">운영 중</div><ul><li>밍글카페 (1층)</li><li>게임파티룸 (1층)</li></ul></div>
-      <div class="tl-item next"><div class="when">2026년 12월</div><div class="state">오픈 예정</div><ul><li>팬덤 이벤트홀 (1층)</li><li>가챠 뽑기샵 (1층)</li><li>파티룸 178평 (2층)</li><li>세미나 모임공간 (4층)</li></ul></div>
-      <div class="tl-item later"><div class="when">2027년 4월</div><div class="state">오픈 예정</div><ul><li>파티룸 129평 (2층)</li><li>연습실 (3층)</li></ul></div>
-      <div class="tl-item later"><div class="when">2027년 6월</div><div class="state">전체 운영</div><ul><li>OTT 라운지 (2층)</li><li>9개 공간 모두 운영</li></ul></div>
-    </div>
-    <p class="tl-note">오픈 시기는 공사 진행에 따라 달라질 수 있습니다. 확정되는 대로 이 페이지에 반영합니다.</p>
   </div>
 </section>
 
 <!-- ================= 제휴 ================= -->
-<section class="sec stone" id="partners">
+<section class="sec" id="partners" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>공간을 함께 채울 분을 찾습니다</h2>
-      <p>한 번 빌리는 것보다 정기적으로 쓰는 편이 서로에게 낫습니다. 아래에 해당하면 제휴 조건으로 상의드립니다.</p>
-    </div>
-    <div class="partners">
-      <div class="pt"><h3>행사 주최자</h3><span class="where">1층 이벤트홀</span><p>팬미팅, 상영회, 플리마켓, 소규모 공연을 정기적으로 여는 분. 길에서 바로 보이는 1층이라 홍보물 노출이 큽니다.</p></div>
-      <div class="pt"><h3>강사·코치</h3><span class="where">3층 연습실, 4층 모임공간</span><p>연기, 보컬, 댄스, 취미 클래스를 고정 시간대에 운영하는 분. 반복 예약을 우선 배정합니다.</p></div>
-      <div class="pt"><h3>모임장·동아리</h3><span class="where">2층 파티룸, 4층 모임공간</span><p>정기 모임, 스터디, 워크숍 운영자. 인원에 맞는 룸을 정해 두고 같은 조건으로 계속 쓸 수 있습니다.</p></div>
-      <div class="pt"><h3>브랜드·셀러</h3><span class="where">1층 이벤트홀, 카페 일부</span><p>팝업, 전시, 판매 부스를 여는 브랜드와 개인 셀러. 건대 20~30대 유동이 그대로 방문객이 됩니다.</p></div>
-      <div class="pt"><h3>기기·콘텐츠 협력사</h3><span class="where">1층 가챠샵 외</span><p>캡슐토이, 자판기, 포토부스처럼 무인으로 돌아가는 기기를 설치하고 운영하는 업체. 자리와 정산 조건을 협의합니다.</p></div>
-    </div>
-    <div class="partner-cta">
-      <a class="btn gold" href="#contact" id="partnerBtn">제휴 문의 남기기</a>
-      <span>어떤 공간을, 어느 정도 주기로 쓰고 싶은지 적어 보내주시면 됩니다.</span>
+    <div class="band">
+      <div>
+        <h2>정기적으로 쓰실 분, 같이 해요</h2>
+        <p>한 번 빌리는 것보다 정해진 시간에 계속 쓰는 편이 서로에게 나아요. 아래에 해당하면 제휴 조건으로 상의드릴게요.</p>
+        <div class="who"><span>강사·코치</span><span>모임장·동아리</span><span>행사 주최자</span><span>팝업 브랜드·셀러</span><span>무인 기기 협력사</span></div>
+      </div>
+      <a class="btn primary lg" href="#contact" id="partnerBtn">제휴 문의하기</a>
     </div>
   </div>
 </section>
 
 <!-- ================= 오시는 길 · 문의 ================= -->
-<section class="sec" id="visit">
+<section class="sec gray" id="visit" style="padding-top:64px">
   <div class="wrap">
-    <div class="contact-grid">
+    <div class="visit">
       <div>
-        <div class="sec-head" style="margin-bottom:24px"><h2>오시는 길</h2></div>
-        <div class="addr">서울특별시 광진구 화양동 10-1<small>한아름건물, 지상 1층부터 4층</small></div>
+        <h2 class="h2">오시는 길</h2>
+        <div class="addr" style="margin-top:18px">서울 광진구 화양동 10-1<small>지상 1층부터 4층 · 건대입구역 인근</small></div>
         <ul class="info">
-          <li><b>지하철</b><span>건대입구역(2호선·7호선) 인근입니다.</span></li>
-          <li><b>주차</b><span>건물 앞 주차장이 있습니다. 이용 조건은 예약 확정 시 안내합니다.</span></li>
-          <li><b>출입</b><span>1층 공간은 정문으로 바로 들어오고, 예약 공간은 안내받은 출입구와 도어락 비밀번호로 출입합니다.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 12h16M8 18l-2 3M16 18l2 3"/></svg><div><b>지하철</b>건대입구역 2호선·7호선</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-6h9L18 17M7 17v3M17 17v3"/><rect x="3" y="11" width="18" height="6" rx="2"/></svg><div><b>주차</b>건물 앞 주차장 · 이용 조건은 예약 확정 시 안내</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg><div><b>출입</b>1층 공간은 정문으로, 예약 공간은 안내받은 출입구와 도어락으로</div></li>
         </ul>
-        <div class="maplinks">
-          <a class="btn ghost sm" href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%ED%99%94%EC%96%91%EB%8F%99%2010-1" target="_blank" rel="noopener">네이버 지도에서 보기</a>
-          <a class="btn ghost sm" href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%ED%99%94%EC%96%91%EB%8F%99%2010-1" target="_blank" rel="noopener">카카오맵에서 보기</a>
+        <div class="maps">
+          <a class="btn line sm" href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%ED%99%94%EC%96%91%EB%8F%99%2010-1" target="_blank" rel="noopener">네이버 지도</a>
+          <a class="btn line sm" href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%ED%99%94%EC%96%91%EB%8F%99%2010-1" target="_blank" rel="noopener">카카오맵</a>
         </div>
-        <p class="direct">전화 <a href="tel:010-2384-9580">010-2384-9580</a> &nbsp;·&nbsp; 메일 <a href="mailto:spaceblank0100@gmail.com">spaceblank0100@gmail.com</a></p>
+        <p class="contact-direct">전화 <a href="tel:010-2384-9580">010-2384-9580</a> · 메일 <a href="mailto:spaceblank0100@gmail.com">spaceblank0100@gmail.com</a></p>
       </div>
-
       <div id="contact">
-        <div class="sec-head" style="margin-bottom:24px">
-          <h2>문의 남기기</h2>
-          <p style="margin-top:8px">예약, 대관, 제휴 모두 아래로 보내주시면 운영팀이 순서대로 답합니다.</p>
-        </div>
-        <div class="panel" id="inqForm">
+        <h2 class="h2">문의 남기기</h2>
+        <p class="sub">예약, 대관, 제휴 무엇이든 남겨 주세요. 순서대로 답해 드려요.</p>
+        <div class="panel" id="inqForm" style="margin-top:18px">
           <div class="row2">
             <div class="field"><label for="iName">이름</label><input type="text" id="iName" maxlength="40" autocomplete="name"></div>
             <div class="field"><label for="iPhone">휴대폰 번호</label><input type="tel" id="iPhone" placeholder="010-0000-0000" autocomplete="tel"></div>
           </div>
-          <div class="field"><label for="iEmail">이메일 (선택)</label><input type="email" id="iEmail" autocomplete="email"></div>
+          <div class="field"><label for="iEmail">이메일 <span style="font-weight:500;color:var(--text-3)">(선택)</span></label><input type="email" id="iEmail" autocomplete="email"></div>
           <div class="row2">
-            <div class="field"><label for="iSpace">문의할 공간</label><select id="iSpace"></select></div>
-            <div class="field"><label for="iType">문의 종류</label>
-              <select id="iType"><option value="예약">예약 (시간 단위 이용)</option><option value="대관">대관 (행사·세미나)</option><option value="제휴">제휴 (정기 이용·입점)</option><option value="기타">기타</option></select>
-            </div>
+            <div class="field"><label for="iSpace">공간</label><select id="iSpace"></select></div>
+            <div class="field"><label for="iType">문의 종류</label><select id="iType"><option value="예약">예약</option><option value="대관">대관 (행사·세미나)</option><option value="제휴">제휴 (정기 이용·입점)</option><option value="기타">기타</option></select></div>
           </div>
-          <div class="field"><label for="iMsg">문의 내용</label><textarea id="iMsg" maxlength="2000" placeholder="이용 날짜와 시간, 인원, 용도를 함께 적어주시면 빠르게 답할 수 있습니다."></textarea></div>
+          <div class="field"><label for="iMsg">내용</label><textarea id="iMsg" maxlength="2000" placeholder="이용 날짜와 시간, 인원, 용도를 함께 적어 주시면 빠르게 답할 수 있어요."></textarea></div>
           <input type="text" id="iHp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <div class="field"><label class="check"><input type="checkbox" id="iAgree"><span>문의 답변을 위해 이름과 연락처를 수집하며, 답변 목적 외에는 쓰지 않습니다. 동의합니다.</span></label></div>
+          <label class="agree"><input type="checkbox" id="iAgree"><span>답변을 위해 이름과 연락처를 수집하고, 답변 목적 외에는 쓰지 않아요. 동의합니다.</span></label>
           <div id="iMsgBox"></div>
-          <div style="margin-top:14px"><button class="btn block" type="button" id="iSubmit">문의 보내기</button></div>
+          <button class="btn dark lg full" type="button" id="iSubmit" style="margin-top:14px">문의 보내기</button>
         </div>
       </div>
     </div>
@@ -542,190 +584,215 @@ section{scroll-margin-top:calc(var(--header-h) + 8px)}
 
 </main>
 
-<footer class="site-footer">
+<footer class="footer">
   <div class="wrap">
     <div>
-      <div class="mark">한아름<small>화양동 10-1</small></div>
-      <p>서울특별시 광진구 화양동 10-1 한아름건물<br>지상 1층부터 4층, 9개 공간을 예약제로 운영합니다.</p>
+      <div class="logo"><i></i>화양 스페이스<small>HWAYANG SPACE</small></div>
+      <p>서울 광진구 화양동 10-1 · 지상 1층부터 4층<br>운영 ㈜지유공간개발 · 대표 최시준 · 건물 관리 ㈜지유코퍼레이션<br>전화 010-2384-9580 · 메일 spaceblank0100@gmail.com</p>
     </div>
-    <div class="col">
-      <ul>
-        <li>운영 ㈜지유공간개발 · 대표 최시준</li>
-        <li>건물 관리 ㈜지유코퍼레이션</li>
-        <li><a href="tel:010-2384-9580">010-2384-9580</a></li>
-        <li><a href="mailto:spaceblank0100@gmail.com">spaceblank0100@gmail.com</a></li>
-      </ul>
-    </div>
-    <div class="copy">
-      <span>© 2026 Jiyoo Space Development. All rights reserved.</span>
-      <span>오픈 시기와 운영 방식은 사정에 따라 바뀔 수 있습니다. <a href="/admin.html">관리자</a></span>
-    </div>
+    <div class="links"><a href="#spaces">공간</a><a href="#book">예약</a><a href="#check">예약 확인</a><a href="#faq">자주 묻는 질문</a><a href="#contact">문의</a></div>
+    <div class="copy"><span>© 2026 Hwayang Space. All rights reserved.</span><span>오픈 시기와 운영 방식은 사정에 따라 바뀔 수 있어요. <a href="/admin.html">관리자</a></span></div>
   </div>
 </footer>
 
+<div class="bottombar" id="bottombar"><a class="btn line" href="tel:010-2384-9580">전화</a><a class="btn primary" href="#book">예약하기</a></div>
+<div class="bookbar" id="bookbar"><div class="info"><b id="bbTitle">공간과 시간을 골라 주세요</b><span id="bbSub">시작 시각과 종료 시각을 누르면 돼요</span></div><button class="btn primary" type="button" id="bbGo">예약 요청</button></div>
+
 <script>
 /* =========================================================
-   공간 데이터는 서버(/api/spaces, D1 데이터베이스)에서 가져옵니다.
-   관리자 화면에서 고친 내용이 그대로 반영됩니다.
-   서버에 연결되지 않을 때는 아래 기본값으로 화면을 그립니다.
+   공간 데이터는 서버(/api/spaces, D1)에서 가져와요.
+   관리자 화면에서 바꾼 내용이 그대로 반영됩니다.
+   서버에 연결되지 않으면 아래 기본값으로 화면을 그립니다.
 ========================================================= */
 const DEFAULT_SPACES = [
-  {id:"mingle",floor:1,name:"밍글카페",short:"밍글 카페",area:42,status:"live",open_label:"운영 중",open_date:null,bookable:false,rooms:null,min_hours:1,max_hours:12,price_note:null,photo:null,
-   description:"24시간 문을 여는 무인 디저트 카페입니다. 키오스크로 주문해 바로 가져가면 되니 늦은 밤에도 부담 없이 들를 수 있고, 전면 유리라 밖에서도 안이 훤히 보입니다.",
-   spec:[["운영 시간","24시간, 연중무휴"],["주문","키오스크 셀프 주문"],["예약","필요 없음"]],who:["야식·디저트","잠깐 쉬어갈 곳","모임 전 대기"]},
-  {id:"gameroom",floor:1,name:"게임파티룸",short:"게임 파티룸",area:15,status:"live",open_label:"운영 중",open_date:null,bookable:true,rooms:null,min_hours:2,max_hours:8,price_note:null,photo:null,
-   description:"소규모 모임에 맞춘 무인 파티룸입니다. 시간 단위로 예약하고 도어락 비밀번호로 들어가며, 게임과 대화 위주의 짧은 모임에 잘 맞습니다.",
-   spec:[["예약","2시간부터, 시간 단위"],["출입","도어락 비밀번호"],["규모","소규모 모임"]],who:["생일·기념일","친구 모임","게임 모임"]},
-  {id:"eventhall",floor:1,name:"팬덤 이벤트홀",short:"이벤트홀",area:70,status:"soon",open_label:"2026년 12월 오픈",open_date:"2026-12-01",bookable:true,rooms:null,min_hours:4,max_hours:12,price_note:null,photo:null,
-   description:"팬미팅, 상영회, 플리마켓, 팝업처럼 사람을 모으는 행사를 위한 1층 대관 공간입니다. 길에서 바로 들어오는 자리라 행사 홍보물이 그대로 노출됩니다.",
-   spec:[["대관","4시간부터"],["용도","팬미팅·상영회·플리마켓·팝업"],["위치","1층 전면, 정문 바로 옆"]],who:["팬클럽·주최자","플리마켓 셀러","브랜드 팝업"]},
-  {id:"gacha",floor:1,name:"가챠 뽑기샵",short:"가챠샵",area:59,status:"soon",open_label:"2026년 12월 오픈",open_date:"2026-12-01",bookable:false,rooms:null,min_hours:1,max_hours:12,price_note:null,photo:null,
-   description:"캡슐토이 자판기를 한자리에 모은 무인 매장입니다. 지나가다 들러 몇 개 뽑아 가는 재미로, 밤늦게까지 열려 있습니다.",
-   spec:[["운영 시간","24시간"],["구성","캡슐토이 자판기 중심"],["예약","필요 없음"]],who:["캐릭터·굿즈","산책 중 들르기","선물 고르기"]},
-  {id:"party178",floor:2,name:"파티룸 178평",short:"파티룸",area:178,status:"soon",open_label:"2026년 12월 오픈",open_date:"2026-12-01",bookable:true,rooms:null,min_hours:3,max_hours:12,price_note:null,photo:null,
-   description:"동아리와 학과 행사처럼 인원이 많은 모임을 위한 대형 파티룸입니다. 넓은 홀과 바 카운터를 그대로 살렸고, 130여 지점을 운영해 온 쏘플파티룸의 방식으로 관리합니다.",
-   spec:[["예약","3시간부터, 시간 단위"],["규모","단체·동아리"],["설비","홀, 바 카운터"]],who:["동아리·학과 행사","단체 회식","송년회·MT 전야"]},
-  {id:"party129",floor:2,name:"파티룸 129평",short:"파티룸",area:129,status:"later",open_label:"2027년 4월 오픈",open_date:"2027-04-01",bookable:true,rooms:["소형 룸","대형 룸"],min_hours:2,max_hours:12,price_note:null,photo:null,
-   description:"소형 룸과 대형 룸을 나눠 구성해 생일 모임부터 단체 모임까지 규모에 맞게 고를 수 있습니다. 같은 층 파티룸과 함께 운영해 예약이 몰려도 자리를 찾기 쉽습니다.",
-   spec:[["예약","2시간부터, 시간 단위"],["구성","소형 룸 + 대형 룸"],["출입","도어락 비밀번호"]],who:["생일·기념일","소규모 파티","중규모 모임"]},
-  {id:"ott",floor:2,name:"OTT 라운지",short:"OTT 라운지",area:89,status:"later",open_label:"2027년 6월 오픈",open_date:"2027-06-01",bookable:true,rooms:null,min_hours:2,max_hours:8,price_note:null,photo:null,
-   description:"보드게임과 OTT를 함께 즐기는 체류형 공간입니다. 혼자 또는 둘이서 조용히 시간을 보내려는 분을 위해 파티룸과는 다른 좌석과 룸으로 구성합니다.",
-   spec:[["예약","2시간부터, 시간 단위"],["구성","보드게임 + OTT 좌석·룸"],["인원","1~2인부터"]],who:["혼자 쉬고 싶은 날","커플·둘이서","보드게임"]},
-  {id:"practice",floor:3,name:"연습실",short:"연습실",area:68,status:"later",open_label:"2027년 4월 오픈",open_date:"2027-04-01",bookable:true,rooms:null,min_hours:1,max_hours:8,price_note:null,photo:null,
-   description:"연기, 보컬, 댄스 연습을 위한 룸형 연습실입니다. 3층이라 소음 걱정이 적어 늦은 시간까지 쓸 수 있고, 건대·성수·왕십리에서 오기 좋은 위치입니다.",
-   spec:[["예약","1시간부터, 시간 단위"],["구성","룸형 연습실"],["용도","연기·보컬·댄스·리허설"]],who:["공연예술 지망생","오디션 준비","취미 클래스"]},
-  {id:"seminar",floor:4,name:"세미나 모임공간",short:"세미나 모임공간",area:185,status:"soon",open_label:"2026년 12월 오픈",open_date:"2026-12-01",bookable:true,rooms:["룸 A","룸 B","룸 C","룸 D"],min_hours:2,max_hours:12,price_note:null,photo:null,
-   description:"최상층 185평을 네 개의 룸으로 나눠 대관하는 세미나·워크숍 공간입니다. 채광과 개방감이 좋고, 이 정도 넓이는 인근에서 찾기 어렵습니다.",
-   spec:[["대관","룸 단위, 2시간부터"],["용도","세미나·워크숍·강연"],["위치","최상층, 채광 좋음"]],who:["기업 워크숍","강연·클래스","스터디·정기 모임"]}
+ {id:"mingle",floor:1,name:"밍글카페",short:"밍글카페",area:42,status:"live",open_label:"운영 중",open_date:null,bookable:false,rooms:null,min_hours:1,max_hours:12,price_note:null,photo:null,category:"lounge",capacity:null,
+  description:"24시간 문 여는 무인 디저트 카페예요. 키오스크로 주문하고 바로 가져가면 되니까, 늦은 밤 야식이나 모임 전 대기 장소로 딱 맞아요.",spec:[["운영","24시간, 연중무휴"],["주문","키오스크"],["예약","필요 없음"]],who:["24시간","디저트","모임 전 대기"]},
+ {id:"gameroom",floor:1,name:"게임파티룸",short:"게임파티룸",area:15,status:"live",open_label:"운영 중",open_date:null,bookable:true,rooms:null,min_hours:2,max_hours:8,price_note:null,photo:null,category:"party",capacity:null,
+  description:"소규모 모임용 무인 파티룸이에요. 시간 단위로 예약하고 도어락 비밀번호로 들어가요. 게임하고 얘기하면서 두세 시간 보내기 좋아요.",spec:[["예약","2시간부터"],["출입","도어락 비밀번호"],["규모","소규모 모임"]],who:["생일","친구 모임","게임"]},
+ {id:"eventhall",floor:1,name:"이벤트홀",short:"이벤트홀",area:70,status:"soon",open_label:"12월 오픈",open_date:"2026-12-01",bookable:true,rooms:null,min_hours:4,max_hours:12,price_note:null,photo:null,category:"event",capacity:null,
+  description:"팬미팅, 상영회, 플리마켓, 팝업처럼 사람이 모이는 행사를 위한 1층 대관 공간이에요. 길에서 바로 들어오는 자리라 홍보물이 그대로 눈에 띄어요.",spec:[["대관","4시간부터"],["용도","팬미팅·상영회·플리마켓·팝업"],["위치","1층 전면, 정문 옆"]],who:["팬미팅","플리마켓","팝업"]},
+ {id:"gacha",floor:1,name:"가챠샵",short:"가챠샵",area:59,status:"soon",open_label:"12월 오픈",open_date:"2026-12-01",bookable:false,rooms:null,min_hours:1,max_hours:12,price_note:null,photo:null,category:"lounge",capacity:null,
+  description:"캡슐토이 자판기를 한자리에 모은 무인 매장이에요. 지나가다 들러 몇 개 뽑아 가는 재미, 밤늦게까지 열려 있어요.",spec:[["운영","24시간"],["구성","캡슐토이 자판기"],["예약","필요 없음"]],who:["캡슐토이","굿즈","24시간"]},
+ {id:"party178",floor:2,name:"대형 파티룸",short:"대형 파티룸",area:178,status:"soon",open_label:"12월 오픈",open_date:"2026-12-01",bookable:true,rooms:null,min_hours:3,max_hours:12,price_note:null,photo:null,category:"party",capacity:null,
+  description:"동아리, 학과 행사처럼 인원이 많은 모임을 위한 178평 파티룸이에요. 넓은 홀과 바 카운터를 그대로 살렸고, 전국 130여 곳 쏘플파티룸을 운영해 온 방식으로 관리해요.",spec:[["예약","3시간부터"],["규모","단체·동아리"],["설비","홀, 바 카운터"]],who:["단체","동아리","회식"]},
+ {id:"party129",floor:2,name:"룸형 파티룸",short:"룸형 파티룸",area:129,status:"later",open_label:"2027년 4월 오픈",open_date:"2027-04-01",bookable:true,rooms:["소형 룸","대형 룸"],min_hours:2,max_hours:12,price_note:null,photo:null,category:"party",capacity:null,
+  description:"소형 룸과 대형 룸으로 나눠 규모에 맞게 고를 수 있어요. 생일 모임부터 중규모 파티까지, 같은 층 대형 파티룸과 함께 운영해요.",spec:[["예약","2시간부터"],["구성","소형 룸 + 대형 룸"],["출입","도어락 비밀번호"]],who:["생일","소규모 파티","룸 선택"]},
+ {id:"ott",floor:2,name:"OTT 라운지",short:"OTT 라운지",area:89,status:"later",open_label:"2027년 6월 오픈",open_date:"2027-06-01",bookable:true,rooms:null,min_hours:2,max_hours:8,price_note:null,photo:null,category:"lounge",capacity:null,
+  description:"보드게임과 OTT를 함께 즐기는 체류형 라운지예요. 혼자 쉬거나 둘이서 조용히 시간 보내기 좋게, 파티룸과는 다른 좌석과 룸으로 꾸며요.",spec:[["예약","2시간부터"],["구성","보드게임 + OTT 좌석·룸"],["인원","1~2인부터"]],who:["혼자","둘이","보드게임"]},
+ {id:"practice",floor:3,name:"연습실",short:"연습실",area:68,status:"later",open_label:"2027년 4월 오픈",open_date:"2027-04-01",bookable:true,rooms:null,min_hours:1,max_hours:8,price_note:null,photo:null,category:"study",capacity:null,
+  description:"연기, 보컬, 댄스 연습을 위한 룸형 연습실이에요. 3층이라 소음 걱정이 적고, 늦은 시간까지 쓸 수 있어요.",spec:[["예약","1시간부터"],["구성","룸형 연습실"],["용도","연기·보컬·댄스"]],who:["연기","보컬","댄스"]},
+ {id:"seminar",floor:4,name:"세미나 라운지",short:"세미나 라운지",area:185,status:"soon",open_label:"12월 오픈",open_date:"2026-12-01",bookable:true,rooms:["룸 A","룸 B","룸 C","룸 D"],min_hours:2,max_hours:12,price_note:null,photo:null,category:"study",capacity:null,
+  description:"최상층 185평을 네 개 룸으로 나눠 대관해요. 채광이 좋고 탁 트여 있어서 세미나, 워크숍, 강연에 알맞아요.",spec:[["대관","룸 단위, 2시간부터"],["용도","세미나·워크숍·강연"],["위치","최상층"]],who:["세미나","워크숍","강연"]}
 ];
-const FLOORS = {
-  1:{tag:"지나가다 들르는 층", text:"24시간 무인 카페와 가챠샵, 길에서 바로 들어오는 이벤트홀, 소규모 게임파티룸이 있습니다."},
-  2:{tag:"모여서 노는 층", text:"규모가 다른 파티룸 두 곳과 보드게임·OTT 라운지가 있습니다. 시끄러워도 되는 층입니다."},
-  3:{tag:"연습하는 층", text:"소음 걱정이 적어 늦은 시간까지 쓸 수 있는 룸형 연습실입니다."},
-  4:{tag:"모여서 일하는 층", text:"채광 좋은 최상층 185평을 네 개 룸으로 나눠 세미나와 워크숍에 대관합니다."}
+const FLOORS = {1:"지나가다 들르는 층",2:"모여서 노는 층",3:"연습하는 층",4:"모여서 일하는 층"};
+const CATS = {all:"전체", party:"파티·모임", event:"행사·대관", study:"연습·세미나", lounge:"카페·라운지"};
+/* 공간별 색·아이콘 (사진을 넣기 전까지 커버로 씁니다) */
+const LOOK = {
+  mingle:{bg:"#E7F5EC",fg:"#1F8A4C",ic:"cup"}, gameroom:{bg:"#FFE9E0",fg:"#E5551F",ic:"pad"}, eventhall:{bg:"#FFF3CC",fg:"#B7791F",ic:"star"},
+  gacha:{bg:"#E6EFFF",fg:"#2F6FE4",ic:"capsule"}, party178:{bg:"#FFE3EA",fg:"#D6336C",ic:"party"}, party129:{bg:"#FBE6F1",fg:"#C2255C",ic:"party"},
+  ott:{bg:"#ECE8FF",fg:"#6741D9",ic:"play"}, practice:{bg:"#E3F3F4",fg:"#0B7285",ic:"mic"}, seminar:{bg:"#FFEEDF",fg:"#D9480F",ic:"board"}
 };
+const ICONS = {
+  cup:'<path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8z"/><path d="M16 10h2a2 2 0 0 1 0 4h-2M7 3v2M10 3v2M13 3v2"/>',
+  pad:'<path d="M7 8h10a4 4 0 0 1 4 4v1.5a3.5 3.5 0 0 1-6.2 2.2L14 15h-4l-.8.7A3.5 3.5 0 0 1 3 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 11v3M6.5 12.5h3"/><circle cx="16" cy="11.5" r="1" fill="currentColor" stroke="none"/><circle cx="18.2" cy="13.5" r="1" fill="currentColor" stroke="none"/>',
+  star:'<path d="M12 3.5l2.5 5.3 5.8.7-4.3 4 1.1 5.8L12 16.5l-5.1 2.8 1.1-5.8-4.3-4 5.8-.7z"/>',
+  capsule:'<rect x="4" y="4" width="16" height="16" rx="6"/><path d="M4 12h16"/>',
+  party:'<path d="M4 20l4-11 7 7-11 4z"/><path d="M12 6l.8-2M15 9l2-1M14 3l1 .5M18 6l1.5-.5M11 11l2 2"/>',
+  play:'<rect x="3" y="5" width="18" height="12" rx="2.5"/><path d="M10 8.5v5l4.5-2.5z" fill="currentColor" stroke="none"/><path d="M8 20h8"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/>',
+  board:'<rect x="3" y="4" width="18" height="11" rx="2"/><path d="M8 11l3-3 2 2 3-4M12 15v4M9 20l3-1 3 1"/>'
+};
+const svg = (name, size = 22) => `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[name] || ICONS.star}</svg>`;
 
 let SPACES = DEFAULT_SPACES;
 let TODAY = localToday();
-let API_OK = false;
+let activeTab = "all";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const hh = (h) => `${String(h).padStart(2,"0")}:00`;
-const fmtDate = (d) => { const [y,m,dd] = d.split("-"); const w = "일월화수목금토"[new Date(d+"T00:00:00").getDay()]; return `${y}년 ${Number(m)}월 ${Number(dd)}일 (${w})`; };
+const WD = "일월화수목금토";
+const fmtDate = (d) => { const [y,m,dd] = d.split("-"); return `${y}년 ${Number(m)}월 ${Number(dd)}일 (${WD[new Date(d+"T00:00:00").getDay()]})`; };
+const fmtShort = (d) => { const [,m,dd] = d.split("-"); return `${Number(m)}.${Number(dd)}(${WD[new Date(d+"T00:00:00").getDay()]})`; };
 function localToday(){ const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}-${String(t.getDate()).padStart(2,"0")}`; }
+function addDays(d, n){ const t=new Date(d+"T00:00:00"); t.setDate(t.getDate()+n); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}-${String(t.getDate()).padStart(2,"0")}`; }
 function showMsg(id, text, type){ $(id).innerHTML = text ? `<div class="msg ${type}">${esc(text)}</div>` : ""; }
+const look = (s) => LOOK[s.id] || {bg:"#F2F4F6",fg:"#4E5968",ic:"star"};
 
 async function api(path, opts = {}) {
-  const res = await fetch("/api/" + path, {
-    method: opts.method || "GET",
-    headers: { "content-type": "application/json" },
-    body: opts.body ? JSON.stringify(opts.body) : undefined,
-  });
-  let data = null;
-  try { data = await res.json(); } catch { throw new Error("서버 응답을 읽을 수 없습니다."); }
-  if (!res.ok || !data.ok) throw new Error(data && data.error ? data.error : "요청을 처리하지 못했습니다.");
+  const res = await fetch("/api/" + path, { method: opts.method || "GET", headers: { "content-type": "application/json" }, body: opts.body ? JSON.stringify(opts.body) : undefined });
+  let data = null; try { data = await res.json(); } catch { throw new Error("서버 응답을 읽을 수 없어요. 잠시 후 다시 시도해 주세요."); }
+  if (!res.ok || !data.ok) throw new Error(data && data.error ? data.error : "요청을 처리하지 못했어요.");
   return data;
 }
 
-/* ---------- 건물 그림 ---------- */
-function renderBuilding(){
-  $("floors").innerHTML = [4,3,2,1].map(f => {
-    const blocks = SPACES.filter(s => s.floor === f).map(s =>
-      `<button type="button" class="blk ${s.status}" style="--w:${s.area}" data-target="${s.id}" aria-label="${esc(s.name)}, ${s.area}평, ${esc(s.open_label)}">
-         <span class="n">${esc(s.short)}</span><span class="a">${s.area}평</span></button>`).join("");
-    return `<div class="floor" data-floor="${f}"><div class="fl-label">${f}F</div><div class="fl-row">${blocks}</div></div>`;
-  }).join("");
-  $("floors").querySelectorAll(".blk").forEach(b => b.addEventListener("click", () => goToCard(b.dataset.target)));
+/* ---------- 히어로 벤토 ---------- */
+function renderBento(){
+  const pick = ["party178","eventhall","practice","seminar"].map(id => SPACES.find(s => s.id === id)).filter(Boolean);
+  $("bento").innerHTML = pick.map(s => { const L = look(s); return `
+    <button type="button" class="tile" style="background:${L.bg}" data-go="${s.id}">
+      <span class="badge ${s.status}">${esc(s.open_label)}</span>
+      <span class="ic" style="color:${L.fg}">${svg(L.ic)}</span>
+      <span><span class="t">${esc(s.name)}</span><span class="s">${s.floor}층 · ${s.area}평 · ${esc((s.who || [])[0] || "")}</span></span>
+    </button>`; }).join("");
+  $("bento").querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => goToCard(b.dataset.go)));
 }
 
-/* ---------- 층별 카드 ---------- */
-function renderGroups(){
-  $("floorGroups").innerHTML = [1,2,3,4].map(f => {
-    const list = SPACES.filter(s => s.floor === f);
-    if (!list.length) return "";
-    const cards = list.map(s => `
-      <article class="card ${s.status}" id="sp-${s.id}">
-        ${s.photo ? `<div class="photo"><img src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy"></div>` : ""}
-        <div class="top"><div><h3>${esc(s.name)}</h3><div class="meta">${s.floor}층, ${s.area}평</div></div><span class="pill ${s.status}">${esc(s.open_label)}</span></div>
+/* ---------- 공간 카드 ---------- */
+function renderTabs(){
+  const counts = { all: SPACES.length };
+  SPACES.forEach(s => counts[s.category] = (counts[s.category] || 0) + 1);
+  $("tabs").innerHTML = Object.keys(CATS).map(k => `<button type="button" class="tab ${activeTab === k ? "on" : ""}" data-cat="${k}">${CATS[k]}<span class="n">${counts[k] || 0}</span></button>`).join("");
+  $("tabs").querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => { activeTab = t.dataset.cat; renderTabs(); renderGrid(); }));
+}
+function renderGrid(){
+  const list = SPACES.filter(s => activeTab === "all" || s.category === activeTab);
+  $("grid").innerHTML = list.map(s => { const L = look(s); return `
+    <article class="card" id="sp-${s.id}">
+      <div class="cover" style="background:${L.bg};color:${L.fg}">
+        ${s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy">` : `<span class="big">${svg(L.ic, 32)}</span>`}
+        <span class="badge ${s.status}">${esc(s.open_label)}</span><span class="fl">${s.floor}층</span>
+      </div>
+      <div class="body">
+        <h3>${esc(s.name)}</h3>
+        <div class="meta">${s.area}평${s.capacity ? " · " + esc(s.capacity) : ""}${s.bookable ? ` · ${s.min_hours}시간부터` : " · 예약 없이 이용"}</div>
         <p class="desc">${esc(s.description)}</p>
-        ${s.price_note ? `<div class="price">${esc(s.price_note)}</div>` : ""}
-        <dl class="spec">${(s.spec||[]).map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
-        <div class="chips">${(s.who||[]).map(w => `<span class="chip">${esc(w)}</span>`).join("")}</div>
-        <div class="cta">${s.bookable
-          ? `<button type="button" class="btn ${s.status === "live" ? "" : "ghost"} sm" data-book="${s.id}">${s.status === "live" ? "예약하기" : "오픈 전 사전 예약"}</button>`
-          : `<button type="button" class="btn ghost sm" data-inq="${s.id}">${s.status === "live" ? "예약 없이 바로 이용" : "오픈 소식 문의"}</button>`}</div>
-      </article>`).join("");
-    return `<div class="floor-group"><div class="fg-head"><div class="num">${f}<small>층</small></div><div class="tag">${FLOORS[f].tag}</div><p>${FLOORS[f].text}</p></div><div class="cards">${cards}</div></div>`;
-  }).join("");
-  $("floorGroups").querySelectorAll("[data-book]").forEach(b => b.addEventListener("click", () => {
-    $("bSpace").value = b.dataset.book; onSpaceChange(); showBookForm(); location.hash = "#book";
-  }));
-  $("floorGroups").querySelectorAll("[data-inq]").forEach(b => b.addEventListener("click", () => {
-    $("iSpace").value = b.dataset.inq; $("iType").value = "기타"; location.hash = "#contact";
-  }));
+        <div class="tags">${(s.who || []).map(w => `<span class="tag">${esc(w)}</span>`).join("")}</div>
+        <details><summary>이용 방식 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <dl>${(s.spec || []).map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></details>
+        <div class="foot">
+          <div class="price">${s.price_note ? esc(s.price_note) : `<small>${s.bookable ? "요금은 확정 시 안내" : (s.status === "live" ? "매장에서 바로 이용" : "오픈 준비 중")}</small>`}</div>
+          ${s.bookable ? `<button type="button" class="btn ${s.status === "live" ? "primary" : "soft"} sm" data-book="${s.id}">${s.status === "live" ? "예약하기" : "사전 예약"}</button>`
+                       : (s.status === "live" ? `<span class="tag" style="height:34px;font-weight:600">예약 없이 바로 이용</span>` : `<button type="button" class="btn light sm" data-inq="${s.id}">오픈 알림 문의</button>`)}
+        </div>
+      </div>
+    </article>`; }).join("") || `<div class="empty">해당하는 공간이 아직 없어요.</div>`;
+  $("grid").querySelectorAll("[data-book]").forEach(b => b.addEventListener("click", () => startBooking(b.dataset.book)));
+  $("grid").querySelectorAll("[data-inq]").forEach(b => b.addEventListener("click", () => { $("iSpace").value = b.dataset.inq; $("iType").value = "기타"; location.hash = "#contact"; }));
 }
 function goToCard(id){
-  const el = $("sp-" + id); if(!el) return;
-  el.scrollIntoView({behavior:"smooth", block:"start"});
+  const s = SPACES.find(x => x.id === id);
+  if (s && activeTab !== "all" && s.category !== activeTab) { activeTab = "all"; renderTabs(); renderGrid(); }
+  const el = $("sp-" + id); if (!el) return;
+  el.scrollIntoView({behavior:"smooth", block:"center"});
   document.querySelectorAll(".card.hl").forEach(c => c.classList.remove("hl"));
-  el.classList.add("hl"); setTimeout(() => el.classList.remove("hl"), 2400);
+  el.classList.add("hl"); setTimeout(() => el.classList.remove("hl"), 2200);
+}
+
+/* ---------- 층별 안내 ---------- */
+function renderFloors(){
+  $("floorList").innerHTML = [4,3,2,1].map(f => `
+    <div class="fl-row">
+      <div class="num">${f}<small>F</small></div>
+      <div><div class="tag-line">${FLOORS[f]}</div>
+        <div class="chips">${SPACES.filter(s => s.floor === f).map(s => `<button type="button" class="chip" data-go="${s.id}"><i class="${s.status}"></i>${esc(s.name)} <span style="color:var(--text-3);font-weight:500">${s.area}평</span></button>`).join("")}</div>
+      </div>
+    </div>`).join("");
+  $("floorList").querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => goToCard(b.dataset.go)));
 }
 
 /* ---------- 예약 ---------- */
 const book = { space:null, room:null, date:null, start:null, end:null, booked:[], nowHour:null };
+const bookable = () => SPACES.filter(s => s.bookable);
+const minDateFor = (s) => (s.open_date && s.open_date > TODAY) ? s.open_date : TODAY;
 
-function bookableSpaces(){ return SPACES.filter(s => s.bookable); }
-function minDateFor(s){ return s.open_date && s.open_date > TODAY ? s.open_date : TODAY; }
-
-function renderBookSelectors(){
-  $("bSpace").innerHTML = bookableSpaces().map(s => `<option value="${s.id}">${esc(s.name)} (${s.floor}층)${s.status === "live" ? "" : " · " + esc(s.open_label)}</option>`).join("");
-  $("iSpace").innerHTML = SPACES.map(s => `<option value="${s.id}">${esc(s.name)} (${s.floor}층)</option>`).join("") + `<option value="">아직 정하지 못함 / 여러 공간</option>`;
-  onSpaceChange();
+function renderSpacePills(){
+  $("spacePills").innerHTML = bookable().map(s => `<button type="button" class="pill ${book.space && book.space.id === s.id ? "on" : ""}" data-id="${s.id}">${esc(s.name)}${s.status !== "live" ? `<small>${esc(s.open_label)}</small>` : ""}</button>`).join("");
+  $("spacePills").querySelectorAll(".pill").forEach(p => p.addEventListener("click", () => selectSpace(p.dataset.id)));
 }
-function onSpaceChange(){
-  const s = SPACES.find(x => x.id === $("bSpace").value); book.space = s; if(!s) return;
+function selectSpace(id, keepDate){
+  const s = SPACES.find(x => x.id === id); if (!s) return;
+  const sameSpace = book.space && book.space.id === id;
+  book.space = s;
+  book.room = s.rooms ? (sameSpace && book.room && s.rooms.includes(book.room) ? book.room : s.rooms[0]) : null;
   const min = minDateFor(s);
-  $("bDate").min = min;
-  if (!$("bDate").value || $("bDate").value < min) $("bDate").value = min;
-  $("bSpaceHelp").textContent = `${s.min_hours}시간부터 최대 ${s.max_hours}시간까지 예약할 수 있습니다.` + (s.status !== "live" ? ` 오픈 전 공간이라 ${min} 이후 날짜만 받고 있으며, 오픈 후 순서대로 확정합니다.` : "");
-  if (s.rooms && s.rooms.length) {
-    $("bRoomWrap").classList.remove("hidden");
-    $("bRoom").innerHTML = s.rooms.map(r => `<option value="${esc(r)}">${esc(r)}</option>`).join("");
-  } else { $("bRoomWrap").classList.add("hidden"); $("bRoom").innerHTML = ""; }
-  book.room = s.rooms ? $("bRoom").value : null;
-  book.date = $("bDate").value;
-  $("bDateHelp").textContent = s.status !== "live" ? `${min}부터 선택할 수 있습니다.` : "오늘부터 선택할 수 있습니다.";
-  resetRange(); loadAvailability();
+  if (!keepDate || !book.date || book.date < min) book.date = min;
+  $("spaceHint").textContent = `${s.min_hours}시간부터 최대 ${s.max_hours}시간까지.` + (s.status !== "live" ? ` 오픈 전이라 ${fmtShort(min)}부터 사전 예약을 받고 있어요.` : " 오늘부터 예약할 수 있어요.");
+  renderSpacePills(); renderRoomPills(); renderDates(); resetRange(); loadAvailability();
 }
-function resetRange(){ book.start = null; book.end = null; updateSummary(); }
+function renderRoomPills(){
+  const s = book.space;
+  if (!s || !s.rooms || !s.rooms.length) { $("roomBlk").classList.add("hidden"); return; }
+  $("roomBlk").classList.remove("hidden");
+  $("roomPills").innerHTML = s.rooms.map(r => `<button type="button" class="pill ${book.room === r ? "on" : ""}" data-r="${esc(r)}">${esc(r)}</button>`).join("");
+  $("roomPills").querySelectorAll(".pill").forEach(p => p.addEventListener("click", () => { book.room = p.dataset.r; renderRoomPills(); resetRange(); loadAvailability(); }));
+}
+function renderDates(){
+  const s = book.space; if (!s) return;
+  const min = minDateFor(s);
+  const days = Array.from({length:14}, (_, i) => addDays(min, i));
+  const inList = days.includes(book.date);
+  const item = (d, label) => { const w = new Date(d+"T00:00:00").getDay(); const [,m,dd] = d.split("-");
+    return `<button type="button" class="date ${w===0?"sun":w===6?"sat":""} ${book.date === d ? "on" : ""}" data-d="${d}"><span class="w">${label || WD[w]}</span><span class="d">${Number(dd)}</span><span class="m">${Number(m)}월</span></button>`; };
+  $("dates").innerHTML = days.map((d, i) => item(d, min === TODAY && i === 0 ? "오늘" : (min === TODAY && i === 1 ? "내일" : null))).join("")
+    + (!inList && book.date ? item(book.date) : "")
+    + `<label class="date pick">달력<input type="date" id="datePick" min="${min}" value="${book.date || ""}"></label>`;
+  $("dates").querySelectorAll(".date[data-d]").forEach(b => b.addEventListener("click", () => { book.date = b.dataset.d; renderDates(); resetRange(); loadAvailability(); }));
+  $("datePick").addEventListener("change", (e) => { if (e.target.value && e.target.value >= min) { book.date = e.target.value; renderDates(); resetRange(); loadAvailability(); } });
+  $("dateHint").textContent = book.date ? fmtDate(book.date) : "";
+  const on = $("dates").querySelector(".date.on"); if (on) $("dates").scrollLeft = Math.max(0, on.offsetLeft - $("dates").clientWidth / 2 + on.offsetWidth / 2);
+}
+function resetRange(){ book.start = null; book.end = null; $("slotHint").textContent = "시작 시각을 누르고, 마지막으로 이용할 시각을 한 번 더 눌러 주세요."; updateSummary(); }
 
 async function loadAvailability(){
-  const s = book.space; if(!s) return;
-  book.date = $("bDate").value; book.room = s.rooms ? $("bRoom").value : null;
+  const s = book.space; if (!s) return;
   book.booked = []; book.nowHour = null;
-  $("slots").innerHTML = `<div class="empty" style="grid-column:1 / -1;padding:14px">비어 있는 시간을 확인하는 중입니다.</div>`;
-  if (!book.date) { $("slots").innerHTML = `<div class="empty" style="grid-column:1 / -1;padding:14px">날짜를 먼저 골라 주세요.</div>`; return; }
+  $("slots").innerHTML = `<div class="empty" style="grid-column:1/-1;padding:16px">비어 있는 시간을 확인하는 중이에요.</div>`;
   try {
     const d = await api(`availability?space_id=${encodeURIComponent(s.id)}&date=${book.date}`);
-    book.booked = d.booked; book.nowHour = d.today === book.date ? d.nowHour : null; API_OK = true;
-    showMsg("bMsg", "", "");
+    book.booked = d.booked; book.nowHour = d.today === book.date ? d.nowHour : null; showMsg("bMsg", "", "");
   } catch (e) {
-    book.booked = []; book.nowHour = (book.date === TODAY) ? new Date().getHours() : null;
-    showMsg("bMsg", "예약 시스템에 연결하지 못해 비어 있는 시간을 확인할 수 없습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.", "err");
+    book.nowHour = book.date === TODAY ? new Date().getHours() : null;
+    showMsg("bMsg", "예약 시스템에 연결하지 못해 비어 있는 시간을 확인할 수 없어요. 잠시 후 다시 시도하거나 전화로 문의해 주세요.", "err");
   }
   renderSlots();
 }
-function hourBooked(h){
-  return book.booked.some(b => (b.room == null || b.room === book.room || !book.space.rooms) && b.start_hour <= h && b.end_hour > h);
-}
+const hourBooked = (h) => book.booked.some(b => (b.room == null || b.room === book.room || !book.space.rooms) && b.start_hour <= h && b.end_hour > h);
 function renderSlots(){
   let html = "";
   for (let h = 0; h < 24; h++) {
-    const past = book.nowHour !== null && h < book.nowHour;
-    const off = hourBooked(h);
-    let cls = "slot";
-    if (off) cls += " off"; else if (past) cls += " past";
+    const past = book.nowHour !== null && h < book.nowHour, off = hourBooked(h);
+    let cls = "slot"; if (off) cls += " off"; else if (past) cls += " past";
     if (book.start !== null && book.end !== null && h >= book.start && h < book.end) cls += " sel";
     else if (book.start !== null && book.end === null && h === book.start) cls += " start";
     html += `<button type="button" class="${cls}" data-h="${h}" ${off || past ? "disabled" : ""}>${h}시</button>`;
@@ -736,81 +803,82 @@ function renderSlots(){
 function pickHour(h){
   const s = book.space;
   if (book.start === null || book.end !== null || h <= book.start) {
-    book.start = h; book.end = null;
-    $("slotHelp").textContent = `${hh(h)}부터 시작합니다. 마지막으로 이용할 시각을 누르세요. (${s.min_hours}시간 이상)`;
+    book.start = h; book.end = null; showMsg("bMsg", "", "");
+    $("slotHint").textContent = `${hh(h)} 시작. 마지막으로 이용할 시각을 눌러 주세요. (${s.min_hours}시간 이상)`;
   } else {
-    // 시작~끝 사이에 예약된 시간이 있으면 안 됨
-    for (let x = book.start; x <= h; x++) { if (hourBooked(x)) { showMsg("bMsg", "중간에 이미 예약된 시간이 있습니다. 시작 시각을 다시 골라 주세요.", "err"); book.start = null; book.end = null; renderSlots(); updateSummary(); return; } }
-    const end = h + 1; const hours = end - book.start;
-    if (hours < s.min_hours) { showMsg("bMsg", `이 공간은 ${s.min_hours}시간부터 예약할 수 있습니다.`, "err"); return; }
-    if (hours > s.max_hours) { showMsg("bMsg", `한 번에 최대 ${s.max_hours}시간까지 예약할 수 있습니다.`, "err"); return; }
-    book.end = end; showMsg("bMsg", "", "");
-    $("slotHelp").textContent = `${hh(book.start)}부터 ${hh(book.end)}까지, ${hours}시간을 골랐습니다. 바꾸려면 다른 시작 시각을 누르세요.`;
+    for (let x = book.start; x <= h; x++) if (hourBooked(x)) { showMsg("bMsg", "중간에 이미 예약된 시간이 있어요. 시작 시각을 다시 골라 주세요.", "err"); book.start = null; book.end = null; renderSlots(); updateSummary(); return; }
+    const hours = h + 1 - book.start;
+    if (hours < s.min_hours) return showMsg("bMsg", `이 공간은 ${s.min_hours}시간부터 예약할 수 있어요.`, "err");
+    if (hours > s.max_hours) return showMsg("bMsg", `한 번에 최대 ${s.max_hours}시간까지 예약할 수 있어요.`, "err");
+    book.end = h + 1; showMsg("bMsg", "", "");
+    $("slotHint").textContent = `${hh(book.start)}부터 ${hh(book.end)}까지 ${hours}시간. 바꾸려면 다른 시작 시각을 누르세요.`;
   }
   renderSlots(); updateSummary();
 }
 function updateSummary(){
-  const s = book.space;
-  $("sSpace").textContent = s ? `${s.name}${book.room ? " / " + book.room : ""}` : "-";
+  const s = book.space, has = book.start !== null && book.end !== null;
+  $("sSpace").textContent = s ? `${s.name}${book.room ? " · " + book.room : ""}` : "-";
   $("sDate").textContent = book.date ? fmtDate(book.date) : "-";
-  $("sTime").textContent = book.start !== null && book.end !== null ? `${hh(book.start)} ~ ${hh(book.end)}` : (book.start !== null ? `${hh(book.start)}부터 (종료 시각 선택 중)` : "-");
-  $("sHours").textContent = book.start !== null && book.end !== null ? `${book.end - book.start}시간` : "-";
+  $("sTime").textContent = has ? `${hh(book.start)} ~ ${hh(book.end)}` : (book.start !== null ? `${hh(book.start)}부터 (종료 선택 중)` : "-");
+  $("sHours").textContent = has ? `${book.end - book.start}시간` : "-";
+  $("bbTitle").textContent = s ? `${s.name}${book.room ? " · " + book.room : ""}` : "공간과 시간을 골라 주세요";
+  $("bbSub").textContent = has ? `${fmtShort(book.date)} ${hh(book.start)}~${hh(book.end)} · ${book.end - book.start}시간` : (book.date ? `${fmtShort(book.date)} · 시간을 골라 주세요` : "시작 시각과 종료 시각을 누르면 돼요");
+}
+function startBooking(id, date){
+  $("bookDone").classList.add("hidden"); $("bookForm").classList.remove("hidden");
+  if (date) book.date = date;
+  selectSpace(id, !!date);
+  location.hash = "#book";
 }
 async function submitBooking(){
-  const s = book.space; if(!s) return;
-  const payload = {
-    space_id: s.id, room: book.room, date: book.date, start_hour: book.start, end_hour: book.end,
-    name: $("bName").value.trim(), phone: $("bPhone").value, headcount: $("bHead").value ? Number($("bHead").value) : null,
-    purpose: $("bPurpose").value.trim(), agree: $("bAgree").checked, _hp: $("bHp").value
-  };
-  if (book.start === null || book.end === null) return showMsg("bMsg", "이용 시간을 골라 주세요.", "err");
+  const s = book.space; if (!s) return showMsg("bMsg", "공간을 먼저 골라 주세요.", "err");
+  const payload = { space_id:s.id, room:book.room, date:book.date, start_hour:book.start, end_hour:book.end, name:$("bName").value.trim(), phone:$("bPhone").value, headcount:$("bHead").value ? Number($("bHead").value) : null, purpose:$("bPurpose").value.trim(), agree:$("bAgree").checked, _hp:$("bHp").value };
+  if (book.start === null || book.end === null) { showMsg("bMsg", "이용 시간을 골라 주세요.", "err"); $("slots").scrollIntoView({behavior:"smooth", block:"center"}); return; }
   if (payload.name.length < 2) return showMsg("bMsg", "이름을 입력해 주세요.", "err");
   if (!/^01[016789]\d{7,8}$/.test(payload.phone.replace(/\D/g,""))) return showMsg("bMsg", "휴대폰 번호를 확인해 주세요.", "err");
   if (!payload.agree) return showMsg("bMsg", "개인정보 수집·이용에 동의해 주세요.", "err");
-  $("bSubmit").disabled = true; $("bSubmit").textContent = "보내는 중…";
+  $("bSubmit").disabled = true; $("bSubmit").textContent = "보내는 중…"; $("bbGo").disabled = true;
   try {
     const d = await api("reservations", { method:"POST", body: payload });
     $("dCode").textContent = d.code;
-    $("dSpace").textContent = `${d.space}${d.room ? " / " + d.room : ""}`;
+    $("dSpace").textContent = `${d.space}${d.room ? " · " + d.room : ""}`;
     $("dWhen").textContent = `${fmtDate(d.date)} ${hh(d.start_hour)} ~ ${hh(d.end_hour)}`;
     $("dNote").textContent = d.prelaunch
-      ? "오픈 전 사전 예약 요청으로 접수되었습니다. 오픈 일정이 확정되면 운영팀이 문자 또는 전화로 순서대로 확정 안내를 드립니다. 예약번호와 휴대폰 번호로 아래 예약 조회에서 상태를 확인할 수 있습니다."
-      : "예약 요청이 접수되었습니다. 운영팀이 확인한 뒤 문자 또는 전화로 확정 안내를 드리며, 도어락 비밀번호는 확정 후 이용일에 전달됩니다. 예약번호와 휴대폰 번호로 아래 예약 조회에서 상태를 확인할 수 있습니다.";
+      ? "오픈 전 사전 예약으로 접수됐어요. 오픈 일정이 확정되면 순서대로 문자로 안내해 드려요. 예약번호와 휴대폰 번호로 아래 예약 확인에서 상태를 볼 수 있어요."
+      : "운영팀이 확인한 뒤 문자로 확정을 드려요. 도어락 비밀번호는 확정 후 이용일에 보내 드려요. 예약번호와 휴대폰 번호로 아래 예약 확인에서 상태를 볼 수 있어요.";
     $("bookForm").classList.add("hidden"); $("bookDone").classList.remove("hidden");
     $("lPhone").value = $("bPhone").value; $("lCode").value = d.code;
-    $("bookDone").scrollIntoView({behavior:"smooth", block:"start"});
+    $("bookbar").classList.remove("show");
+    $("bookDone").scrollIntoView({behavior:"smooth", block:"center"});
   } catch (e) {
     showMsg("bMsg", e.message, "err");
     if (/이미 예약/.test(e.message)) loadAvailability();
-  } finally { $("bSubmit").disabled = false; $("bSubmit").textContent = "예약 요청 보내기"; }
+  } finally { $("bSubmit").disabled = false; $("bSubmit").textContent = "예약 요청 보내기"; $("bbGo").disabled = false; }
 }
-function showBookForm(){ $("bookDone").classList.add("hidden"); $("bookForm").classList.remove("hidden"); resetRange(); loadAvailability(); }
 
-/* ---------- 예약 조회·취소 ---------- */
-const STATUS_KO = { pending:"확인 대기", confirmed:"확정", cancelled:"취소됨" };
+/* ---------- 예약 확인·취소 ---------- */
+const STATUS_KO = { pending:"확인 중", confirmed:"확정", cancelled:"취소됨" };
 async function lookup(keepMsg){
   const phone = $("lPhone").value, code = $("lCode").value.trim().toUpperCase();
   if (!/^01[016789]\d{7,8}$/.test(phone.replace(/\D/g,""))) return showMsg("lMsg", "휴대폰 번호를 확인해 주세요.", "err");
   $("lSubmit").disabled = true; if (!keepMsg) showMsg("lMsg", "", "");
   try {
     const d = await api("reservations/lookup", { method:"POST", body:{ phone, code } });
-    if (!d.reservations.length) { $("lList").innerHTML = `<div class="empty">해당하는 예약이 없습니다. 번호를 다시 확인해 주세요.</div>`; return; }
-    $("lList").innerHTML = d.reservations.map(r => {
-      const canCancel = r.status !== "cancelled" && r.date >= d.today;
-      return `<div class="res">
-        <div class="t">${esc(r.space_name)}${r.room ? " / " + esc(r.room) : ""} <span style="font-weight:500;color:var(--ink-3);font-size:13px">(${r.floor}층)</span></div>
+    if (!d.reservations.length) { $("lList").innerHTML = `<div class="empty">해당하는 예약이 없어요. 번호를 다시 확인해 주세요.</div>`; return; }
+    $("lList").innerHTML = d.reservations.map(r => { const can = r.status !== "cancelled" && r.date >= d.today; return `
+      <div class="res">
+        <div class="t">${esc(r.space_name)}${r.room ? " · " + esc(r.room) : ""} <span style="font-weight:500;color:var(--text-3);font-size:13px">${r.floor}층</span></div>
         <div class="d">${fmtDate(r.date)} ${hh(r.start_hour)} ~ ${hh(r.end_hour)}${r.headcount ? " · " + r.headcount + "명" : ""}</div>
         <div class="c">예약번호 ${esc(r.code)} · 요청일 ${esc(String(r.created_at).slice(0,10))}</div>
-        <div class="act"><span class="pill ${r.status}">${STATUS_KO[r.status] || r.status}</span>${canCancel ? `<button type="button" class="btn ghost sm" data-cancel="${esc(r.code)}">예약 취소</button>` : ""}</div>
-      </div>`;
-    }).join("");
+        <div class="act"><span class="badge ${r.status}">${STATUS_KO[r.status] || r.status}</span>${can ? `<button type="button" class="btn line sm" data-cancel="${esc(r.code)}">예약 취소</button>` : ""}</div>
+      </div>`; }).join("");
     $("lList").querySelectorAll("[data-cancel]").forEach(b => b.addEventListener("click", () => cancelRes(b.dataset.cancel)));
   } catch (e) { showMsg("lMsg", e.message, "err"); }
   finally { $("lSubmit").disabled = false; }
 }
 async function cancelRes(code){
-  if (!confirm(`예약 ${code}을(를) 취소할까요? 취소 후에는 되돌릴 수 없습니다.`)) return;
-  try { await api("reservations/cancel", { method:"POST", body:{ code, phone: $("lPhone").value } }); showMsg("lMsg", "예약이 취소되었습니다.", "ok"); lookup(true); }
+  if (!confirm(`예약 ${code}을(를) 취소할까요? 취소하면 되돌릴 수 없어요.`)) return;
+  try { await api("reservations/cancel", { method:"POST", body:{ code, phone:$("lPhone").value } }); showMsg("lMsg", "예약을 취소했어요.", "ok"); lookup(true); }
   catch (e) { showMsg("lMsg", e.message, "err"); }
 }
 
@@ -819,38 +887,56 @@ async function submitInquiry(){
   const payload = { name:$("iName").value.trim(), phone:$("iPhone").value, email:$("iEmail").value.trim(), space_id:$("iSpace").value, type:$("iType").value, message:$("iMsg").value.trim(), agree:$("iAgree").checked, _hp:$("iHp").value };
   if (payload.name.length < 2) return showMsg("iMsgBox", "이름을 입력해 주세요.", "err");
   if (!/^01[016789]\d{7,8}$/.test(payload.phone.replace(/\D/g,""))) return showMsg("iMsgBox", "휴대폰 번호를 확인해 주세요.", "err");
-  if (payload.message.length < 5) return showMsg("iMsgBox", "문의 내용을 조금 더 적어 주세요.", "err");
+  if (payload.message.length < 5) return showMsg("iMsgBox", "내용을 조금 더 적어 주세요.", "err");
   if (!payload.agree) return showMsg("iMsgBox", "개인정보 수집·이용에 동의해 주세요.", "err");
   $("iSubmit").disabled = true; $("iSubmit").textContent = "보내는 중…";
-  try {
-    await api("inquiries", { method:"POST", body: payload });
-    showMsg("iMsgBox", "문의가 접수되었습니다. 운영팀이 확인 후 연락드리겠습니다.", "ok");
-    ["iName","iPhone","iEmail","iMsg"].forEach(id => $(id).value = ""); $("iAgree").checked = false;
-  } catch (e) { showMsg("iMsgBox", e.message + " 급하면 전화 010-2384-9580으로 연락 주세요.", "err"); }
+  try { await api("inquiries", { method:"POST", body: payload }); showMsg("iMsgBox", "문의를 받았어요. 확인하고 연락드릴게요.", "ok"); ["iName","iPhone","iEmail","iMsg"].forEach(id => $(id).value = ""); $("iAgree").checked = false; }
+  catch (e) { showMsg("iMsgBox", e.message + " 급하시면 010-2384-9580으로 전화 주세요.", "err"); }
   finally { $("iSubmit").disabled = false; $("iSubmit").textContent = "문의 보내기"; }
 }
 
-/* ---------- 초기화 ---------- */
+/* ---------- 빠른 예약 · 메뉴 · 하단 바 ---------- */
+function quickGo(){
+  const cat = $("qCat").value, date = $("qDate").value;
+  const s = bookable().find(x => x.category === cat && x.status === "live") || bookable().find(x => x.category === cat) || bookable()[0];
+  if (!s) return;
+  startBooking(s.id, date && date >= minDateFor(s) ? date : null);
+}
+let bookIn = false, heroOut = false;
+function applyBars(){
+  $("bottombar").classList.toggle("show", heroOut && !bookIn);
+  $("bookbar").classList.toggle("show", bookIn && !$("bookForm").classList.contains("hidden"));
+}
 (function(){
-  const btn = $("menuBtn"), nav = $("nav");
-  btn.addEventListener("click", () => { const open = nav.classList.toggle("open"); btn.setAttribute("aria-expanded", open ? "true" : "false"); });
+  const btn = $("menuBtn"), nav = $("gnb");
+  btn.addEventListener("click", () => { const o = nav.classList.toggle("open"); btn.setAttribute("aria-expanded", o ? "true" : "false"); });
   nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); btn.setAttribute("aria-expanded","false"); }));
+  new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; applyBars(); }, {threshold:.1}).observe(document.querySelector(".hero"));
+  new IntersectionObserver(([e]) => { bookIn = e.isIntersecting; applyBars(); }, {threshold:.15}).observe($("book"));
+  $("bAgain").addEventListener("click", () => { $("bookDone").classList.add("hidden"); $("bookForm").classList.remove("hidden"); resetRange(); loadAvailability(); applyBars(); });
+  $("bbGo").addEventListener("click", () => {
+    if (book.start === null || book.end === null) { $("slots").scrollIntoView({behavior:"smooth", block:"center"}); showMsg("bMsg", "이용 시간을 골라 주세요.", "err"); }
+    else if (!$("bName").value.trim() || !$("bPhone").value.trim()) { $("bName").scrollIntoView({behavior:"smooth", block:"center"}); $("bName").focus({preventScroll:true}); }
+    else submitBooking();
+  });
 })();
-$("bSpace").addEventListener("change", onSpaceChange);
-$("bRoom").addEventListener("change", () => { resetRange(); loadAvailability(); });
-$("bDate").addEventListener("change", () => { resetRange(); loadAvailability(); });
+$("qGo").addEventListener("click", quickGo);
+$("qDate").min = TODAY; $("qDate").value = TODAY;
 $("bSubmit").addEventListener("click", submitBooking);
-$("bAgain").addEventListener("click", showBookForm);
 $("lSubmit").addEventListener("click", () => lookup(false));
 $("iSubmit").addEventListener("click", submitInquiry);
 $("partnerBtn").addEventListener("click", () => { $("iType").value = "제휴"; });
 
+function renderAll(){
+  renderBento(); renderTabs(); renderGrid(); renderFloors(); renderSpacePills();
+  $("iSpace").innerHTML = SPACES.map(s => `<option value="${s.id}">${esc(s.name)} (${s.floor}층)</option>`).join("") + `<option value="">아직 못 정했어요 / 여러 공간</option>`;
+  const first = bookable().find(s => s.status === "live") || bookable()[0];
+  if (first) selectSpace(first.id, true);
+}
 async function init(){
-  renderBuilding(); renderGroups(); renderBookSelectors();
-  try {
-    const d = await api("spaces");
-    if (d.spaces && d.spaces.length) { SPACES = d.spaces; TODAY = d.today || TODAY; API_OK = true; renderBuilding(); renderGroups(); renderBookSelectors(); }
-  } catch (e) { /* 서버가 없으면 기본값으로 표시 */ }
+  renderAll();
+  try { const d = await api("spaces"); if (d.spaces && d.spaces.length) { SPACES = d.spaces; TODAY = d.today || TODAY; $("qDate").min = TODAY; if ($("qDate").value < TODAY) $("qDate").value = TODAY; renderAll(); } }
+  catch (e) { /* 서버가 없으면 기본값으로 표시 */ }
 }
 init();
 </script>
