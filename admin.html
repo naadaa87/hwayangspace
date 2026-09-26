@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>한아름 관리자</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2316213E'/%3E%3Crect x='14' y='14' width='36' height='8' rx='2' fill='%23fff'/%3E%3Crect x='14' y='26' width='36' height='8' rx='2' fill='%23fff'/%3E%3Crect x='14' y='38' width='16' height='8' rx='2' fill='%23C9A227'/%3E%3Crect x='34' y='38' width='16' height='8' rx='2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--paper:#fff;--stone:#F4F4F4;--stone-2:#E8E9EC;--ink:#16213E;--ink-2:#4B5470;--ink-3:#7C839A;--line:#D9DBE1;--gold:#C9A227;--gold-deep:#8C6E10;--gold-soft:#F8F1D6;--ok:#1F7A4D;--ok-soft:#E3F3EA;--err:#B3261E;--err-soft:#FBE9E7;--radius:6px;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);background:var(--stone);font-size:15px;line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.hidden{display:none !important}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+@media (max-width:640px){.wrap{padding:0 14px}}
+
+.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
+.top .wrap{height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top .mark{font-weight:800;font-size:20px;letter-spacing:-.03em}
+.top .mark{white-space:nowrap}
+.top .mark small{font-size:13px;font-weight:500;color:var(--ink-3);margin-left:8px}
+@media (max-width:480px){.top .mark{font-size:17px}.top .mark small{display:none}}
+.top .right{display:flex;gap:8px;align-items:center}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 16px;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;white-space:nowrap}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn.danger{background:#fff;color:var(--err);border-color:var(--err)}
+.btn.sm{height:34px;padding:0 12px;font-size:13px}
+
+.login{max-width:400px;margin:80px auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+.login h1{font-size:20px;font-weight:700;margin-bottom:6px}
+.login p{font-size:14px;color:var(--ink-2);margin-bottom:18px}
+
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:5px}
+input[type=text],input[type=tel],input[type=date],input[type=number],input[type=password],input[type=url],select,textarea{width:100%;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;font-size:14px;appearance:none;-webkit-appearance:none}
+textarea{height:auto;min-height:88px;padding:10px 12px;resize:vertical;line-height:1.5}
+select{padding-right:34px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%2316213E' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 12px center}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
+.check{display:flex;gap:8px;align-items:center;font-size:14px}
+.check input{width:16px;height:16px;accent-color:var(--ink)}
+.msg{border-radius:var(--radius);padding:10px 12px;font-size:13.5px;margin-top:10px}
+.msg.err{background:var(--err-soft);color:var(--err)}.msg.ok{background:var(--ok-soft);color:var(--ok)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.stat .v{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.stat .k{font-size:13px;color:var(--ink-3);margin-top:6px}
+.stat.warn{border-top:3px solid var(--gold)}
+
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:18px;overflow-x:auto}
+.tab{background:none;border:0;padding:12px 14px;font-size:15px;font-weight:600;color:var(--ink-3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tab.on{color:var(--ink);border-bottom-color:var(--ink)}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin-bottom:14px}
+.toolbar .field{margin:0;min-width:140px;flex:1}
+.toolbar .field.w{flex:2}
+.list{display:flex;flex-direction:column;gap:10px;margin-bottom:60px}
+.item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:grid;grid-template-columns:1fr 280px;gap:12px 20px}
+@media (max-width:860px){.item{grid-template-columns:1fr}}
+.item.pending{border-left:4px solid var(--gold)}
+.item.new{border-left:4px solid var(--gold)}
+.item .h{font-weight:700;font-size:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.item .sub{font-size:14px;color:var(--ink-2);margin-top:4px}
+.item .meta{font-size:12.5px;color:var(--ink-3);margin-top:6px}
+.item .body{white-space:pre-wrap;font-size:14px;margin-top:8px;color:var(--ink-2);background:var(--stone);padding:10px 12px;border-radius:4px}
+.item .ctrl{display:grid;gap:8px;align-content:start}
+.item .ctrl .actions{display:flex;gap:6px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.pill.pending{background:var(--gold-soft);color:var(--gold-deep)}.pill.confirmed{background:var(--ok-soft);color:var(--ok)}.pill.cancelled{background:var(--stone-2);color:var(--ink-3)}
+.pill.new{background:var(--gold-soft);color:var(--gold-deep)}.pill.replied{background:var(--ok-soft);color:var(--ok)}.pill.closed{background:var(--stone-2);color:var(--ink-3)}
+.pill.block{background:var(--ink);color:#fff}
+.empty{padding:26px;border:1px dashed var(--line);border-radius:var(--radius);color:var(--ink-3);font-size:14px;text-align:center;background:#fff}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px}
+.panel h3{font-size:16px;font-weight:700;margin-bottom:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:760px){.grid3,.grid2{grid-template-columns:1fr}}
+.space-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:12px}
+.space-card h3{font-size:17px;font-weight:700;display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.space-card h3 small{font-size:13px;font-weight:500;color:var(--ink-3)}
+.space-card .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px}
+.note{font-size:12.5px;color:var(--ink-3);margin-top:4px}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <div class="mark">한아름 관리자<small>화양동 10-1</small></div>
+    <div class="right"><a class="btn ghost sm" href="/" target="_blank" rel="noopener">홈페이지 보기</a><button class="btn sm hidden" id="logoutBtn" type="button">로그아웃</button></div>
+  </div>
+</div>
+
+<div class="login" id="loginBox">
+  <h1>관리자 로그인</h1>
+  <p>Cloudflare에 설정한 ADMIN_PASSWORD를 입력합니다.</p>
+  <div class="field"><label for="pw">비밀번호</label><input type="password" id="pw" autocomplete="current-password"></div>
+  <div id="loginMsg"></div>
+  <div style="margin-top:12px"><button class="btn" id="loginBtn" type="button" style="width:100%">로그인</button></div>
+</div>
+
+<div class="wrap hidden" id="app">
+  <div class="stats">
+    <div class="stat warn"><div class="v" id="stPending">-</div><div class="k">확인 대기 예약</div></div>
+    <div class="stat"><div class="v" id="stToday">-</div><div class="k">오늘 예약 (취소 제외)</div></div>
+    <div class="stat"><div class="v" id="stUpcoming">-</div><div class="k">앞으로 확정된 예약</div></div>
+    <div class="stat warn"><div class="v" id="stInq">-</div><div class="k">새 문의</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-tab="res" type="button">예약</button>
+    <button class="tab" data-tab="block" type="button">시간 차단</button>
+    <button class="tab" data-tab="inq" type="button">문의</button>
+    <button class="tab" data-tab="space" type="button">공간 설정</button>
+  </div>
+
+  <!-- 예약 -->
+  <div id="tab-res">
+    <div class="toolbar">
+      <div class="field"><label>상태</label><select id="fStatus"><option value="">전체</option><option value="pending" selected>확인 대기</option><option value="confirmed">확정</option><option value="cancelled">취소</option></select></div>
+      <div class="field"><label>공간</label><select id="fSpace"><option value="">전체</option></select></div>
+      <div class="field"><label>시작일</label><input type="date" id="fFrom"></div>
+      <div class="field"><label>종료일</label><input type="date" id="fTo"></div>
+      <div class="field w"><label>검색 (이름·전화·예약번호)</label><input type="text" id="fQ"></div>
+      <button class="btn" id="fGo" type="button">조회</button>
+    </div>
+    <div class="list" id="resList"></div>
+  </div>
+
+  <!-- 차단 -->
+  <div id="tab-block" class="hidden">
+    <div class="panel">
+      <h3>시간 차단 추가</h3>
+      <p class="note" style="margin-bottom:10px">점검, 휴무, 오프라인 예약 등으로 손님이 예약하지 못하게 막을 시간을 넣습니다. 룸이 있는 공간에서 룸을 비우면 모든 룸이 막힙니다.</p>
+      <div class="grid3">
+        <div class="field"><label>공간</label><select id="kSpace"></select></div>
+        <div class="field"><label>룸 (선택)</label><select id="kRoom"><option value="">전체</option></select></div>
+        <div class="field"><label>날짜</label><input type="date" id="kDate"></div>
+        <div class="field"><label>시작</label><select id="kStart"></select></div>
+        <div class="field"><label>종료</label><select id="kEnd"></select></div>
+        <div class="field"><label>메모</label><input type="text" id="kMemo" placeholder="예: 시설 점검"></div>
+      </div>
+      <div id="kMsg"></div>
+      <div style="margin-top:8px"><button class="btn" id="kAdd" type="button">차단 추가</button></div>
+    </div>
+    <div class="list" id="blockList"></div>
+  </div>
+
+  <!-- 문의 -->
+  <div id="tab-inq" class="hidden">
+    <div class="toolbar">
+      <div class="field"><label>상태</label><select id="qStatus"><option value="">전체</option><option value="new" selected>새 문의</option><option value="replied">답변함</option><option value="closed">종료</option></select></div>
+      <button class="btn" id="qGo" type="button">조회</button>
+    </div>
+    <div class="list" id="inqList"></div>
+  </div>
+
+  <!-- 공간 -->
+  <div id="tab-space" class="hidden">
+    <p class="note" style="margin-bottom:12px">여기서 저장한 내용은 홈페이지 첫 화면 건물 그림, 공간 카드, 예약 화면에 바로 반영됩니다.</p>
+    <div id="spaceList"></div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const hh = (h) => `${String(h).padStart(2,"0")}:00`;
+const showMsg = (id, t, type) => { $(id).innerHTML = t ? `<div class="msg ${type}">${esc(t)}</div>` : ""; };
+let TOKEN = sessionStorage.getItem("hr_admin_token") || "";
+let SPACES = [];
+const RS = { pending:"확인 대기", confirmed:"확정", cancelled:"취소" };
+const IS = { new:"새 문의", replied:"답변함", closed:"종료" };
+
+async function api(path, opts = {}) {
+  const res = await fetch("/api/" + path, {
+    method: opts.method || "GET",
+    headers: { "content-type": "application/json", ...(TOKEN ? { authorization: "Bearer " + TOKEN } : {}) },
+    body: opts.body ? JSON.stringify(opts.body) : undefined,
+  });
+  let data = null; try { data = await res.json(); } catch { throw new Error("서버 응답을 읽을 수 없습니다."); }
+  if (res.status === 401 && !path.startsWith("admin/login")) { logout(); throw new Error("로그인이 만료되었습니다. 다시 로그인해 주세요."); }
+  if (!res.ok || !data.ok) throw new Error(data && data.error ? data.error : "요청을 처리하지 못했습니다.");
+  return data;
+}
+function logout(){ TOKEN = ""; sessionStorage.removeItem("hr_admin_token"); $("app").classList.add("hidden"); $("loginBox").classList.remove("hidden"); $("logoutBtn").classList.add("hidden"); }
+
+async function login(){
+  $("loginBtn").disabled = true; showMsg("loginMsg", "", "");
+  try {
+    const d = await api("admin/login", { method:"POST", body:{ password: $("pw").value } });
+    TOKEN = d.token; sessionStorage.setItem("hr_admin_token", TOKEN); $("pw").value = "";
+    await start();
+  } catch (e) { showMsg("loginMsg", e.message, "err"); }
+  finally { $("loginBtn").disabled = false; }
+}
+async function start(){
+  try {
+    const d = await api("spaces"); SPACES = d.spaces;
+    await api("admin/overview").then(fillOverview);
+  } catch (e) { showMsg("loginMsg", e.message, "err"); return; }
+  $("loginBox").classList.add("hidden"); $("app").classList.remove("hidden"); $("logoutBtn").classList.remove("hidden");
+  const opts = SPACES.map(s => `<option value="${s.id}">${esc(s.name)} (${s.floor}층)</option>`).join("");
+  $("fSpace").innerHTML = `<option value="">전체</option>` + opts;
+  $("kSpace").innerHTML = SPACES.filter(s => s.bookable).map(s => `<option value="${s.id}">${esc(s.name)} (${s.floor}층)</option>`).join("");
+  $("kStart").innerHTML = Array.from({length:24},(_,h)=>`<option value="${h}">${hh(h)}</option>`).join("");
+  $("kEnd").innerHTML = Array.from({length:24},(_,h)=>`<option value="${h+1}">${hh(h+1)}</option>`).join("");
+  $("kDate").value = new Date().toISOString().slice(0,10);
+  onKSpace();
+  loadRes(); renderSpaces();
+}
+function fillOverview(d){ $("stPending").textContent = d.pending; $("stToday").textContent = d.todayCount; $("stUpcoming").textContent = d.upcoming; $("stInq").textContent = d.newInquiries; }
+
+/* ---------- 예약 ---------- */
+async function loadRes(){
+  const p = new URLSearchParams();
+  if ($("fStatus").value) p.set("status", $("fStatus").value);
+  if ($("fSpace").value) p.set("space_id", $("fSpace").value);
+  if ($("fFrom").value) p.set("from", $("fFrom").value);
+  if ($("fTo").value) p.set("to", $("fTo").value);
+  if ($("fQ").value.trim()) p.set("q", $("fQ").value.trim());
+  $("resList").innerHTML = `<div class="empty">불러오는 중…</div>`;
+  try {
+    const d = await api("admin/reservations?" + p.toString());
+    if (!d.reservations.length) { $("resList").innerHTML = `<div class="empty">조건에 맞는 예약이 없습니다.</div>`; return; }
+    $("resList").innerHTML = d.reservations.map(r => `
+      <div class="item ${r.status}" data-id="${r.id}">
+        <div>
+          <div class="h"><span class="pill ${r.status}">${RS[r.status]}</span>${esc(r.space_name || r.space_id)}${r.room ? " / " + esc(r.room) : ""} <span style="font-weight:500;color:var(--ink-3);font-size:13px">${esc(r.code)}</span></div>
+          <div class="sub">${esc(r.date)} ${hh(r.start_hour)}~${hh(r.end_hour)} (${r.end_hour - r.start_hour}시간) · ${esc(r.name)} · <a href="tel:${esc(r.phone)}">${esc(r.phone)}</a>${r.headcount ? " · " + r.headcount + "명" : ""}</div>
+          ${r.purpose ? `<div class="body">${esc(r.purpose)}</div>` : ""}
+          <div class="meta">요청 ${esc(r.created_at)}${r.updated_at ? " · 변경 " + esc(r.updated_at) : ""}</div>
+        </div>
+        <div class="ctrl">
+          <select data-f="status"><option value="pending" ${r.status==="pending"?"selected":""}>확인 대기</option><option value="confirmed" ${r.status==="confirmed"?"selected":""}>확정</option><option value="cancelled" ${r.status==="cancelled"?"selected":""}>취소</option></select>
+          <input type="text" data-f="memo" placeholder="메모 (도어락 전달 여부, 결제 등)" value="${esc(r.memo || "")}">
+          <div class="actions"><button class="btn sm" type="button" data-save>저장</button><a class="btn ghost sm" href="sms:${esc(r.phone)}">문자</a></div>
+          <div data-msg></div>
+        </div>
+      </div>`).join("");
+    $("resList").querySelectorAll("[data-save]").forEach(b => b.addEventListener("click", () => saveRes(b.closest(".item"))));
+  } catch (e) { $("resList").innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+}
+async function saveRes(item){
+  const id = item.dataset.id;
+  const status = item.querySelector('[data-f="status"]').value, memo = item.querySelector('[data-f="memo"]').value;
+  const m = item.querySelector("[data-msg]");
+  try { await api("admin/reservations/" + id, { method:"PATCH", body:{ status, memo } }); m.innerHTML = `<div class="msg ok">저장했습니다.</div>`; setTimeout(loadRes, 600); api("admin/overview").then(fillOverview); }
+  catch (e) { m.innerHTML = `<div class="msg err">${esc(e.message)}</div>`; }
+}
+
+/* ---------- 차단 ---------- */
+function onKSpace(){
+  const s = SPACES.find(x => x.id === $("kSpace").value);
+  $("kRoom").innerHTML = `<option value="">전체</option>` + (s && s.rooms ? s.rooms.map(r => `<option value="${esc(r)}">${esc(r)}</option>`).join("") : "");
+}
+async function addBlock(){
+  showMsg("kMsg", "", "");
+  try {
+    await api("admin/blocks", { method:"POST", body:{ space_id:$("kSpace").value, room:$("kRoom").value, date:$("kDate").value, start_hour:Number($("kStart").value), end_hour:Number($("kEnd").value), memo:$("kMemo").value } });
+    showMsg("kMsg", "차단을 추가했습니다.", "ok"); loadBlocks();
+  } catch (e) { showMsg("kMsg", e.message, "err"); }
+}
+async function loadBlocks(){
+  $("blockList").innerHTML = `<div class="empty">불러오는 중…</div>`;
+  try {
+    const d = await api("admin/reservations?kind=block");
+    if (!d.reservations.length) { $("blockList").innerHTML = `<div class="empty">등록된 차단이 없습니다.</div>`; return; }
+    $("blockList").innerHTML = d.reservations.map(r => `
+      <div class="item">
+        <div><div class="h"><span class="pill block">차단</span>${esc(r.space_name || r.space_id)}${r.room ? " / " + esc(r.room) : " (전체 룸)"}</div>
+        <div class="sub">${esc(r.date)} ${hh(r.start_hour)}~${hh(r.end_hour)} · ${esc(r.memo || "")}</div></div>
+        <div class="ctrl"><div class="actions"><button class="btn danger sm" type="button" data-del="${r.id}">삭제</button></div></div>
+      </div>`).join("");
+    $("blockList").querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", async () => {
+      if (!confirm("이 차단을 삭제할까요?")) return;
+      try { await api("admin/blocks/" + b.dataset.del, { method:"DELETE" }); loadBlocks(); } catch (e) { alert(e.message); }
+    }));
+  } catch (e) { $("blockList").innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+}
+
+/* ---------- 문의 ---------- */
+async function loadInq(){
+  $("inqList").innerHTML = `<div class="empty">불러오는 중…</div>`;
+  try {
+    const d = await api("admin/inquiries" + ($("qStatus").value ? "?status=" + $("qStatus").value : ""));
+    if (!d.inquiries.length) { $("inqList").innerHTML = `<div class="empty">조건에 맞는 문의가 없습니다.</div>`; return; }
+    $("inqList").innerHTML = d.inquiries.map(i => `
+      <div class="item ${i.status}" data-id="${i.id}">
+        <div>
+          <div class="h"><span class="pill ${i.status}">${IS[i.status]}</span>${esc(i.type)} · ${esc(i.name)} · <a href="tel:${esc(i.phone)}">${esc(i.phone)}</a>${i.email ? ` · <a href="mailto:${esc(i.email)}">${esc(i.email)}</a>` : ""}</div>
+          <div class="sub">공간: ${esc(i.space_name || "미정")}</div>
+          <div class="body">${esc(i.message)}</div>
+          <div class="meta">접수 ${esc(i.created_at)}${i.updated_at ? " · 변경 " + esc(i.updated_at) : ""}</div>
+        </div>
+        <div class="ctrl">
+          <select data-f="status"><option value="new" ${i.status==="new"?"selected":""}>새 문의</option><option value="replied" ${i.status==="replied"?"selected":""}>답변함</option><option value="closed" ${i.status==="closed"?"selected":""}>종료</option></select>
+          <input type="text" data-f="memo" placeholder="메모" value="${esc(i.memo || "")}">
+          <div class="actions"><button class="btn sm" type="button" data-save>저장</button><a class="btn ghost sm" href="sms:${esc(i.phone)}">문자</a></div>
+          <div data-msg></div>
+        </div>
+      </div>`).join("");
+    $("inqList").querySelectorAll("[data-save]").forEach(b => b.addEventListener("click", async () => {
+      const item = b.closest(".item"); const m = item.querySelector("[data-msg]");
+      try { await api("admin/inquiries/" + item.dataset.id, { method:"PATCH", body:{ status:item.querySelector('[data-f="status"]').value, memo:item.querySelector('[data-f="memo"]').value } }); m.innerHTML = `<div class="msg ok">저장했습니다.</div>`; setTimeout(loadInq, 600); api("admin/overview").then(fillOverview); }
+      catch (e) { m.innerHTML = `<div class="msg err">${esc(e.message)}</div>`; }
+    }));
+  } catch (e) { $("inqList").innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+}
+
+/* ---------- 공간 설정 ---------- */
+function renderSpaces(){
+  $("spaceList").innerHTML = SPACES.map(s => `
+    <div class="space-card" data-id="${s.id}">
+      <h3>${esc(s.name)} <small>${s.floor}층 · ${s.area}평 · ${esc(s.id)}</small></h3>
+      <div class="grid3">
+        <div class="field"><label>이름</label><input type="text" data-f="name" value="${esc(s.name)}"></div>
+        <div class="field"><label>건물 그림용 짧은 이름</label><input type="text" data-f="short" value="${esc(s.short)}"></div>
+        <div class="field"><label>상태</label><select data-f="status"><option value="live" ${s.status==="live"?"selected":""}>운영 중</option><option value="soon" ${s.status==="soon"?"selected":""}>2026년 12월 오픈</option><option value="later" ${s.status==="later"?"selected":""}>2027년 오픈</option></select></div>
+        <div class="field"><label>상태 문구 (카드 표시)</label><input type="text" data-f="open_label" value="${esc(s.open_label)}"></div>
+        <div class="field"><label>예약 시작일 (비우면 오늘부터)</label><input type="date" data-f="open_date" value="${esc(s.open_date || "")}"></div>
+        <div class="field"><label>예약 방식</label><select data-f="bookable"><option value="1" ${s.bookable?"selected":""}>온라인 예약 받음</option><option value="0" ${!s.bookable?"selected":""}>예약 없이 이용 (카페·가챠)</option></select></div>
+        <div class="field"><label>룸 목록 (쉼표로 구분, 없으면 비움)</label><input type="text" data-f="rooms" value="${esc((s.rooms||[]).join(", "))}"></div>
+        <div class="field"><label>최소 이용 시간</label><input type="number" data-f="min_hours" min="1" max="24" value="${s.min_hours}"></div>
+        <div class="field"><label>최대 이용 시간</label><input type="number" data-f="max_hours" min="1" max="24" value="${s.max_hours}"></div>
+        <div class="field"><label>요금 안내 (선택)</label><input type="text" data-f="price_note" placeholder="예: 시간당 2만원부터" value="${esc(s.price_note || "")}"></div>
+        <div class="field"><label>사진 주소 (선택)</label><input type="text" data-f="photo" placeholder="images/xxx.jpg 또는 https://…" value="${esc(s.photo || "")}"></div>
+        <div class="field"><label>이런 분께 (쉼표로 구분)</label><input type="text" data-f="who" value="${esc((s.who||[]).join(", "))}"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>소개 문장</label><textarea data-f="description">${esc(s.description)}</textarea></div>
+        <div class="field"><label>이용 방식 (한 줄에 하나, "항목 | 내용")</label><textarea data-f="spec">${esc((s.spec||[]).map(([k,v]) => `${k} | ${v}`).join("\n"))}</textarea></div>
+      </div>
+      <div class="foot"><div data-msg></div><button class="btn" type="button" data-save>저장</button></div>
+    </div>`).join("");
+  $("spaceList").querySelectorAll("[data-save]").forEach(b => b.addEventListener("click", () => saveSpace(b.closest(".space-card"))));
+}
+async function saveSpace(card){
+  const g = (f) => card.querySelector(`[data-f="${f}"]`).value;
+  const body = {
+    name:g("name"), short:g("short"), status:g("status"), open_label:g("open_label"), open_date:g("open_date"),
+    bookable: g("bookable") === "1", rooms: g("rooms"), min_hours:Number(g("min_hours")), max_hours:Number(g("max_hours")),
+    price_note:g("price_note"), photo:g("photo"), who:g("who"), description:g("description"),
+    spec: g("spec").split("\n").map(l => l.trim()).filter(Boolean).map(l => { const i = l.indexOf("|"); return i > 0 ? [l.slice(0,i).trim(), l.slice(i+1).trim()] : [l, ""]; })
+  };
+  const m = card.querySelector("[data-msg]");
+  try { const d = await api("admin/spaces/" + card.dataset.id, { method:"PUT", body }); const idx = SPACES.findIndex(s => s.id === d.space.id); if (idx >= 0) SPACES[idx] = d.space; m.innerHTML = `<div class="msg ok" style="margin:0">저장했습니다. 홈페이지에 반영됩니다.</div>`; }
+  catch (e) { m.innerHTML = `<div class="msg err" style="margin:0">${esc(e.message)}</div>`; }
+}
+
+/* ---------- 탭·이벤트 ---------- */
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
+  ["res","block","inq","space"].forEach(k => $("tab-" + k).classList.toggle("hidden", k !== t.dataset.tab));
+  if (t.dataset.tab === "block") loadBlocks();
+  if (t.dataset.tab === "inq") loadInq();
+  if (t.dataset.tab === "res") loadRes();
+}));
+$("loginBtn").addEventListener("click", login);
+$("pw").addEventListener("keydown", (e) => { if (e.key === "Enter") login(); });
+$("logoutBtn").addEventListener("click", logout);
+$("fGo").addEventListener("click", loadRes);
+$("fQ").addEventListener("keydown", (e) => { if (e.key === "Enter") loadRes(); });
+$("qGo").addEventListener("click", loadInq);
+$("kSpace").addEventListener("change", onKSpace);
+$("kAdd").addEventListener("click", addBlock);
+if (TOKEN) start();
+</script>
+</body>
+</html>
